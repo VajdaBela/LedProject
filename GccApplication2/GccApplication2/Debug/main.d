@@ -14,7 +14,9 @@ main.d main.o: .././main.c \
  c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
- c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h
+ c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
+ c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h \
+ c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\4.9.2\include\stddef.h
 
 c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -47,3 +49,7 @@ c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr
 c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
 
 c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
+
+c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h:
+
+c:\users\kripton\desktop\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\4.9.2\include\stddef.h:

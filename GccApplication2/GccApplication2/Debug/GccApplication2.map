@@ -4,6 +4,8 @@ c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/
                               C:/Users/Kripton/Desktop/atmel studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328/avr5/crtatmega328.o (exit)
 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
                               main.o (__do_copy_data)
+c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                              main.o (__do_clear_bss)
 
 Discarded input sections
 
@@ -44,6 +46,22 @@ Discarded input sections
                 0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
 
 Memory Configuration
 
@@ -169,7 +187,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x156
+.text           0x00000000      0x266
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Users/Kripton/Desktop/atmel studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328/avr5/crtatmega328.o
                 0x00000000                __vector_default
@@ -212,6 +230,8 @@ END GROUP
  *(.init4)
  .init4         0x00000074       0x16 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
                 0x00000074                __do_copy_data
+ .init4         0x0000008a       0x10 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                0x0000008a                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -222,54 +242,57 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000008a        0x8 C:/Users/Kripton/Desktop/atmel studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328/avr5/crtatmega328.o
+ .init9         0x0000009a        0x8 C:/Users/Kripton/Desktop/atmel studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328/avr5/crtatmega328.o
  *(.init9)
  *(.text)
- .text          0x00000092        0x4 C:/Users/Kripton/Desktop/atmel studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328/avr5/crtatmega328.o
-                0x00000092                __vector_22
-                0x00000092                __vector_1
-                0x00000092                __vector_24
-                0x00000092                __vector_12
-                0x00000092                __bad_interrupt
-                0x00000092                __vector_6
-                0x00000092                __vector_3
-                0x00000092                __vector_23
-                0x00000092                __vector_25
-                0x00000092                __vector_11
-                0x00000092                __vector_13
-                0x00000092                __vector_17
-                0x00000092                __vector_19
-                0x00000092                __vector_7
-                0x00000092                __vector_5
-                0x00000092                __vector_4
-                0x00000092                __vector_9
-                0x00000092                __vector_2
-                0x00000092                __vector_21
-                0x00000092                __vector_15
-                0x00000092                __vector_8
-                0x00000092                __vector_14
-                0x00000092                __vector_10
-                0x00000092                __vector_16
-                0x00000092                __vector_18
-                0x00000092                __vector_20
-                0x00000096                . = ALIGN (0x2)
+ .text          0x000000a2        0x4 C:/Users/Kripton/Desktop/atmel studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328/avr5/crtatmega328.o
+                0x000000a2                __vector_22
+                0x000000a2                __vector_1
+                0x000000a2                __vector_24
+                0x000000a2                __vector_12
+                0x000000a2                __bad_interrupt
+                0x000000a2                __vector_6
+                0x000000a2                __vector_3
+                0x000000a2                __vector_23
+                0x000000a2                __vector_25
+                0x000000a2                __vector_11
+                0x000000a2                __vector_13
+                0x000000a2                __vector_17
+                0x000000a2                __vector_19
+                0x000000a2                __vector_7
+                0x000000a2                __vector_5
+                0x000000a2                __vector_4
+                0x000000a2                __vector_9
+                0x000000a2                __vector_2
+                0x000000a2                __vector_21
+                0x000000a2                __vector_15
+                0x000000a2                __vector_8
+                0x000000a2                __vector_14
+                0x000000a2                __vector_10
+                0x000000a2                __vector_16
+                0x000000a2                __vector_18
+                0x000000a2                __vector_20
+                0x000000a6                . = ALIGN (0x2)
  *(.text.*)
- .text.Shift    0x00000096       0x10 main.o
-                0x00000096                Shift
- .text.clear    0x000000a6       0x12 main.o
-                0x000000a6                clear
+ .text.Shift    0x000000a6       0x10 main.o
+                0x000000a6                Shift
+ .text.clear    0x000000b6       0x12 main.o
+                0x000000b6                clear
+ .text.SetBufer
+                0x000000c8      0x102 main.o
+                0x000000c8                SetBufer
  .text.TurnOnRow
-                0x000000b8       0x18 main.o
-                0x000000b8                TurnOnRow
- .text.PutData  0x000000d0       0x46 main.o
-                0x000000d0                PutData
- .text.main     0x00000116       0x3c main.o
-                0x00000116                main
-                0x00000152                . = ALIGN (0x2)
+                0x000001ca       0x18 main.o
+                0x000001ca                TurnOnRow
+ .text.PutData  0x000001e2       0x46 main.o
+                0x000001e2                PutData
+ .text.main     0x00000228       0x3a main.o
+                0x00000228                main
+                0x00000262                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000152        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
-                0x00000152                _exit
-                0x00000152                exit
+ .fini9         0x00000262        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000262                _exit
+                0x00000262                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -288,42 +311,48 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000152        0x4 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000262        0x4 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000156                _etext = .
+                0x00000266                _etext = .
 
-.data           0x00800100       0x1e load address 0x00000156
+.data           0x00800100       0x20 load address 0x00000266
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
+ .data.text     0x00800100        0x2 main.o
+                0x00800100                text
+ .data.shiftNum
+                0x00800102        0x1 main.o
+                0x00800102                shiftNum
  *(.rodata)
  *(.rodata*)
  .rodata.numbers
-                0x00800100       0x15 main.o
-                0x00800100                numbers
+                0x00800103       0x15 main.o
+                0x00800103                numbers
  .rodata.allRows
-                0x00800115        0x8 main.o
-                0x00800115                allRows
+                0x00800118        0x8 main.o
+                0x00800118                allRows
  *(.gnu.linkonce.d*)
-                0x0080011e                . = ALIGN (0x2)
- *fill*         0x0080011d        0x1 
-                0x0080011e                _edata = .
-                0x0080011e                PROVIDE (__data_end, .)
+                0x00800120                . = ALIGN (0x2)
+                0x00800120                _edata = .
+                0x00800120                PROVIDE (__data_end, .)
 
-.bss            0x0080011e        0x0
-                [!provide]                PROVIDE (__bss_start, .)
+.bss            0x00800120        0xe
+                0x00800120                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.bufer     0x00800120        0xe main.o
+                0x00800120                bufer
  *(COMMON)
-                [!provide]                PROVIDE (__bss_end, .)
-                0x00000156                __data_load_start = LOADADDR (.data)
-                0x00000174                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0080012e                PROVIDE (__bss_end, .)
+                0x00000266                __data_load_start = LOADADDR (.data)
+                0x00000286                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080011e        0x0
+.noinit         0x0080012e        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080011e                _end = .
+                0x0080012e                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -388,38 +417,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x40
+.debug_aranges  0x00000000       0x48
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x40 main.o
+                0x00000000       0x48 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x21c
+.debug_info     0x00000000      0x307
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x21c main.o
+ .debug_info    0x00000000      0x307 main.o
 
-.debug_abbrev   0x00000000      0x148
+.debug_abbrev   0x00000000      0x174
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x148 main.o
+ .debug_abbrev  0x00000000      0x174 main.o
 
-.debug_line     0x00000000      0x193
+.debug_line     0x00000000      0x216
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x193 main.o
+ .debug_line    0x00000000      0x216 main.o
 
-.debug_frame    0x00000000       0x80
+.debug_frame    0x00000000       0xd4
  *(.debug_frame)
- .debug_frame   0x00000000       0x80 main.o
+ .debug_frame   0x00000000       0xd4 main.o
 
-.debug_str      0x00000000      0x178
+.debug_str      0x00000000      0x1a3
  *(.debug_str)
- .debug_str     0x00000000      0x178 main.o
-                                0x1ac (size before relaxing)
+ .debug_str     0x00000000      0x1a3 main.o
+                                0x1dc (size before relaxing)
 
-.debug_loc      0x00000000      0x162
+.debug_loc      0x00000000      0x2bd
  *(.debug_loc)
- .debug_loc     0x00000000      0x162 main.o
+ .debug_loc     0x00000000      0x2bd main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -439,9 +468,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x30
+.debug_ranges   0x00000000       0x70
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x30 main.o
+ .debug_ranges  0x00000000       0x70 main.o
 
 .debug_macro
  *(.debug_macro)
