@@ -436,9 +436,9 @@ END GROUP
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x19c main.o
 
-.debug_line     0x00000000      0x2a4
+.debug_line     0x00000000      0x2a5
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x2a4 main.o
+ .debug_line    0x00000000      0x2a5 main.o
 
 .debug_frame    0x00000000      0x140
  *(.debug_frame)

@@ -19,7 +19,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   7 .debug_abbrev 0000019c  00000000  00000000  000008bb  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000002a4  00000000  00000000  00000a57  2**0
+  8 .debug_line   000002a5  00000000  00000000  00000a57  2**0
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  00000140  00000000  00000000  00000cfc  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -103,7 +103,7 @@ Disassembly of section .text:
 000000a6 <Shift>:
 char text[] = "012";
 
-
+//puts either 1 or 0 into the register 
 void Shift(uint8_t state)
 {
 	if(state)
@@ -115,7 +115,8 @@ void Shift(uint8_t state)
 	else
 		PORTB &= ~(1 << SERIN);
   ae:	2d 98       	cbi	0x05, 5	; 5
-		
+	
+	//the actual shift	
 	PORTC |= (1 << SRCK);
   b0:	45 9a       	sbi	0x08, 5	; 8
 	PORTC &= ~(1 << SRCK);
@@ -125,7 +126,7 @@ void Shift(uint8_t state)
 000000b6 <clear>:
 }
 
-
+//clears the registers (shift 0, 16 times
 void clear()
 {
   b6:	cf 93       	push	r28
@@ -138,7 +139,7 @@ void clear()
   c0:	c1 50       	subi	r28, 0x01	; 1
 }
 
-
+//clears the registers (shift 0, 16 times
 void clear()
 {
 	for(uint8_t br = 0; br < 16; ++br)
@@ -152,7 +153,7 @@ void clear()
 
 000000c8 <SetBufer>:
 
-
+//buffer neads to be made (it'll consist only from what is on screen)
 void SetBufer()
 {
   c8:	3f 92       	push	r3
@@ -195,7 +196,7 @@ void SetBufer()
  10a:	10 82       	st	Z, r1
  10c:	01 96       	adiw	r24, 0x01	; 1
 
-
+//buffer neads to be made (it'll consist only from what is on screen)
 void SetBufer()
 {
 	//clear bufer
@@ -215,6 +216,7 @@ void SetBufer()
  11c:	1d 92       	st	X+, r1
  11e:	8a 95       	dec	r24
  120:	e9 f7       	brne	.-6      	; 0x11c <SetBufer+0x54>
+	//go through all of the letters
 	for(uint8_t br = 0; br < strlen(text); ++br)
  122:	b1 2c       	mov	r11, r1
  124:	0f 2e       	mov	r0, r31
@@ -234,24 +236,25 @@ void SetBufer()
  134:	35 2c       	mov	r3, r5
  136:	a1 2c       	mov	r10, r1
  138:	71 2c       	mov	r7, r1
-				if((shiftNum - 4 - br * 5) > 0)
+				if((shiftNum - 4 - br * 5) > 0)//for positiv
 				{
 					bufer[br1] |= (temp[br1] << (shiftNum - 4 - br * 5));
 				}
-				else
+				else // and negative
 					bufer[br1] |= (temp[br1] >> (shiftNum - 4 - br * 5) * (-1));
  13a:	68 94       	set
  13c:	cc 24       	eor	r12, r12
  13e:	c2 f8       	bld	r12, 2
  140:	d1 2c       	mov	r13, r1
-	{
 		bufer[br1] = 0;
 	}
 	
 	uint16_t temp[7] = {0};
+	//go through all of the letters
 	for(uint8_t br = 0; br < strlen(text); ++br)
  142:	8d c0       	rjmp	.+282    	; 0x25e <SetBufer+0x196>
 	{
+		//if shiftNum - br * 5 - 5 is bigger than 16 the letters left the screen
 		if ((shiftNum - br * 5 - 5) < 16)
  144:	80 91 30 01 	lds	r24, 0x0130	; 0x800130 <shiftNum>
  148:	6b 2d       	mov	r22, r11
@@ -271,6 +274,7 @@ void SetBufer()
  164:	0c f0       	brlt	.+2      	; 0x168 <SetBufer+0xa0>
  166:	7a c0       	rjmp	.+244    	; 0x25c <SetBufer+0x194>
 		{
+			//if shiftNum - br * 5 is smaller than 0 the letters didnt yet come to screen(we can discard them, brake is for that)
 			if ((shiftNum - br * 5) < 0)
  168:	80 91 30 01 	lds	r24, 0x0130	; 0x800130 <shiftNum>
  16c:	f8 01       	movw	r30, r16
@@ -328,11 +332,11 @@ void SetBufer()
  1bc:	87 30       	cpi	r24, 0x07	; 7
  1be:	91 05       	cpc	r25, r1
  1c0:	81 f7       	brne	.-32     	; 0x1a2 <SetBufer+0xda>
-				if((shiftNum - 4 - br * 5) > 0)
+				if((shiftNum - 4 - br * 5) > 0)//for positiv
 				{
 					bufer[br1] |= (temp[br1] << (shiftNum - 4 - br * 5));
 				}
-				else
+				else // and negative
 					bufer[br1] |= (temp[br1] >> (shiftNum - 4 - br * 5) * (-1));
  1c2:	7b 01       	movw	r14, r22
  1c4:	ee 0c       	add	r14, r14
@@ -343,12 +347,12 @@ void SetBufer()
  1ce:	f7 1e       	adc	r15, r23
  1d0:	2a 2d       	mov	r18, r10
  1d2:	37 2d       	mov	r19, r7
-			}
 			
 			//set bufer
 			for (uint8_t br1 = 0; br1 < 7; ++br1)
 			{
-				if((shiftNum - 4 - br * 5) > 0)
+				//because  shifting with a negative is not defined in c there are two cases
+				if((shiftNum - 4 - br * 5) > 0)//for positiv
  1d4:	80 91 30 01 	lds	r24, 0x0130	; 0x800130 <shiftNum>
  1d8:	90 e0       	ldi	r25, 0x00	; 0
  1da:	04 97       	sbiw	r24, 0x04	; 4
@@ -385,7 +389,7 @@ void SetBufer()
  216:	60 83       	st	Z, r22
  218:	1a c0       	rjmp	.+52     	; 0x24e <SetBufer+0x186>
 				}
-				else
+				else // and negative
 					bufer[br1] |= (temp[br1] >> (shiftNum - 4 - br * 5) * (-1));
  21a:	40 91 30 01 	lds	r20, 0x0130	; 0x800130 <shiftNum>
  21e:	f9 01       	movw	r30, r18
@@ -425,11 +429,11 @@ void SetBufer()
  256:	31 05       	cpc	r19, r1
  258:	09 f0       	breq	.+2      	; 0x25c <SetBufer+0x194>
  25a:	bc cf       	rjmp	.-136    	; 0x1d4 <SetBufer+0x10c>
-	{
 		bufer[br1] = 0;
 	}
 	
 	uint16_t temp[7] = {0};
+	//go through all of the letters
 	for(uint8_t br = 0; br < strlen(text); ++br)
  25c:	b3 94       	inc	r11
  25e:	f4 01       	movw	r30, r8
@@ -445,8 +449,8 @@ void SetBufer()
  272:	9f 07       	cpc	r25, r31
  274:	08 f4       	brcc	.+2      	; 0x278 <SetBufer+0x1b0>
  276:	66 cf       	rjmp	.-308    	; 0x144 <SetBufer+0x7c>
-					bufer[br1] |= (temp[br1] >> (shiftNum - 4 - br * 5) * (-1));
-				
+				/ 5 is used because a letter consists of 4 diods + 'space'
+				 */
 			}
 		}
 	}
@@ -479,7 +483,7 @@ void SetBufer()
 000002a8 <TurnOnRow>:
 
 
-
+//firs turns off all existing rows then turns on one
 void TurnOnRow(uint8_t row)
 {
 	PORTB &= allRows[ERASE];
@@ -501,7 +505,7 @@ void TurnOnRow(uint8_t row)
 000002c4 <setupTimer>:
 }
 
-
+//sets up timer with a prescaler of 1024 (currently counts to 500 ms)
 void setupTimer()
 {
 	TIMSK1 |= (1 << OCIE1A);
@@ -528,7 +532,7 @@ void setupTimer()
 000002e8 <PutData>:
 }
 
-
+//reads data and puts into the register
 void PutData(uint16_t data)
 {
  2e8:	ef 92       	push	r14
@@ -567,7 +571,7 @@ void PutData(uint16_t data)
  31e:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
  322:	21 96       	adiw	r28, 0x01	; 1
 
-
+//reads data and puts into the register
 void PutData(uint16_t data)
 {
 	//acording to Vajda
@@ -658,7 +662,7 @@ int main()
 	}
 }
 
-
+//interupts evry 500 ms and moovs the letters by 1 (goes until (5 * strlen(text) ) + 16 ) and then starts all over )
 ISR(TIMER1_COMPA_vect)
 {
  378:	1f 92       	push	r1
