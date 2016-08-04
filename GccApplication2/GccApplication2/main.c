@@ -105,6 +105,15 @@ void TurnOnRow(uint8_t row)
 }
 
 
+void setupTimer()
+{
+	TIMSK1 |= (1 << OCIE1A);
+	TCCR1B |= (1 << WGM12) | (1 << CS12) | (1 << CS10);
+	OCR1A = 5400;
+	sei();
+}
+
+
 void PutData(uint16_t data)
 {
 	//acording to Vajda
@@ -148,6 +157,7 @@ int main()
 	//setup
 	DDRB = 0xFF;
 	DDRC |= (1 << 5);
+	setupTimer();
 	clear();
 	
 	while(1)
@@ -158,5 +168,15 @@ int main()
 				PutData(bufer[br]);
 				TurnOnRow(br);
 			}
+	}
+}
+
+
+ISR(TIMER1_COMPA_vect)
+{
+	shiftNum++;
+	if (shiftNum > ((5 * strlen(text) ) + 16 ) )
+	{
+		shiftNum = 0;
 	}
 }
