@@ -23,7 +23,7 @@
 #define SRCK 5
 
 
-volatile uint8_t shiftNum = 10;
+volatile uint8_t shiftNum = 0;
 volatile uint8_t const allRows[8] = {0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0xF0}; // last one for clearing previous
 #define ERASE 7
 volatile uint8_t const numbers[][7] = { 

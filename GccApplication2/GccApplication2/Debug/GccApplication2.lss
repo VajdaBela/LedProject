@@ -7,7 +7,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   1 .text         00000346  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000000e  00800122  00800122  000003fc  2**0
+  2 .bss          0000000f  00800122  00800122  000003fc  2**0
                   ALLOC
   3 .comment      00000030  00000000  00000000  000003fc  2**0
                   CONTENTS, READONLY
@@ -91,7 +91,7 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	a0 33       	cpi	r26, 0x30	; 48
+  94:	a1 33       	cpi	r26, 0x31	; 49
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
   9a:	0e 94 85 01 	call	0x30a	; 0x30a <main>
@@ -253,7 +253,7 @@ void SetBufer()
  142:	8d c0       	rjmp	.+282    	; 0x25e <SetBufer+0x196>
 	{
 		if ((shiftNum - br * 5 - 5) < 16)
- 144:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <shiftNum>
+ 144:	80 91 30 01 	lds	r24, 0x0130	; 0x800130 <shiftNum>
  148:	6b 2d       	mov	r22, r11
  14a:	70 e0       	ldi	r23, 0x00	; 0
  14c:	2b ef       	ldi	r18, 0xFB	; 251
@@ -272,7 +272,7 @@ void SetBufer()
  166:	7a c0       	rjmp	.+244    	; 0x25c <SetBufer+0x194>
 		{
 			if ((shiftNum - br * 5) < 0)
- 168:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <shiftNum>
+ 168:	80 91 30 01 	lds	r24, 0x0130	; 0x800130 <shiftNum>
  16c:	f8 01       	movw	r30, r16
  16e:	e8 0f       	add	r30, r24
  170:	f1 1d       	adc	r31, r1
@@ -349,7 +349,7 @@ void SetBufer()
 			for (uint8_t br1 = 0; br1 < 7; ++br1)
 			{
 				if((shiftNum - 4 - br * 5) > 0)
- 1d4:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <shiftNum>
+ 1d4:	80 91 30 01 	lds	r24, 0x0130	; 0x800130 <shiftNum>
  1d8:	90 e0       	ldi	r25, 0x00	; 0
  1da:	04 97       	sbiw	r24, 0x04	; 4
  1dc:	80 0f       	add	r24, r16
@@ -359,7 +359,7 @@ void SetBufer()
  1e4:	d4 f4       	brge	.+52     	; 0x21a <SetBufer+0x152>
 				{
 					bufer[br1] |= (temp[br1] << (shiftNum - 4 - br * 5));
- 1e6:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <shiftNum>
+ 1e6:	80 91 30 01 	lds	r24, 0x0130	; 0x800130 <shiftNum>
  1ea:	f9 01       	movw	r30, r18
  1ec:	ee 0f       	add	r30, r30
  1ee:	ff 1f       	adc	r31, r31
@@ -387,7 +387,7 @@ void SetBufer()
 				}
 				else
 					bufer[br1] |= (temp[br1] >> (shiftNum - 4 - br * 5) * (-1));
- 21a:	40 91 21 01 	lds	r20, 0x0121	; 0x800121 <shiftNum>
+ 21a:	40 91 30 01 	lds	r20, 0x0130	; 0x800130 <shiftNum>
  21e:	f9 01       	movw	r30, r18
  220:	ee 0f       	add	r30, r30
  222:	ff 1f       	adc	r31, r31

@@ -325,32 +325,32 @@ END GROUP
                 0x00800104                numbers
  .data.allRows  0x00800119        0x8 main.o
                 0x00800119                allRows
- .data.shiftNum
-                0x00800121        0x1 main.o
-                0x00800121                shiftNum
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
                 0x00800122                . = ALIGN (0x2)
+ *fill*         0x00800121        0x1 
                 0x00800122                _edata = .
                 0x00800122                PROVIDE (__data_end, .)
 
-.bss            0x00800122        0xe
+.bss            0x00800122        0xf
                 0x00800122                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.bufer     0x00800122        0xe main.o
                 0x00800122                bufer
+ .bss.shiftNum  0x00800130        0x1 main.o
+                0x00800130                shiftNum
  *(COMMON)
-                0x00800130                PROVIDE (__bss_end, .)
+                0x00800131                PROVIDE (__bss_end, .)
                 0x00000346                __data_load_start = LOADADDR (.data)
                 0x00000368                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800130        0x0
+.noinit         0x00800131        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800130                _end = .
+                0x00800131                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
