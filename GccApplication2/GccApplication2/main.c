@@ -23,17 +23,17 @@
 #define SRCK 5
 
 
-uint8_t shiftNum = 8;
-uint8_t const allRows[8] = {0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0xF0}; // last one for clearing previous
+volatile uint8_t shiftNum = 10;
+volatile uint8_t const allRows[8] = {0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0xF0}; // last one for clearing previous
 #define ERASE 7
-uint8_t const numbers[][7] = { 
+volatile uint8_t const numbers[][7] = { 
 	{0b00001111, 0b00001001, 0b00001001, 0b00001001, 0b00001001, 0b00001001, 0b00001111 },//0
 	{0b00000001, 0b00000001, 0b00000001, 0b00000001, 0b00000001, 0b00000001, 0b00000001 },//1
 	{0b00001111, 0b00000001, 0b00000001, 0b00001111, 0b00001000, 0b00001000, 0b00001111 },//2
 };
-uint16_t bufer[7] = {0};
+volatile uint16_t bufer[7] = {0};
 
-char text[] = "0";
+char text[] = "012";
 
 
 void Shift(uint8_t state)
@@ -59,21 +59,40 @@ void clear()
 
 void SetBufer()
 {
-	uint8_t temp[7] = {0};
+	//clear bufer
+	for(uint8_t br1 =  0; br1 < 7; ++br1)
+	{
+		bufer[br1] = 0;
+	}
+	
+	uint16_t temp[7] = {0};
 	for(uint8_t br = 0; br < strlen(text); ++br)
 	{
-		//set temp
-		for(uint8_t br1 = 0; br1 < 7; ++br1)
+		if ((shiftNum - br * 5 - 5) < 16)
 		{
-			temp[br1] = numbers [text[br] - 48][br1];
-		}
+			if ((shiftNum - br * 5) < 0)
+			{
+				break;
+			}
 		
-		//set bufer
-		for (uint8_t br1 = 0; br1 < 7; ++br1)
-		{
-			bufer[br1] = (temp[br1] << (shiftNum - 4));
+			//set temp
+			for(uint8_t br1 = 0; br1 < 7; ++br1)
+			{
+				temp[br1] = numbers[text[br] - 48][br1];
+			}
+			
+			//set bufer
+			for (uint8_t br1 = 0; br1 < 7; ++br1)
+			{
+				if((shiftNum - 4 - br * 5) > 0)
+				{
+					bufer[br1] |= (temp[br1] << (shiftNum - 4 - br * 5));
+				}
+				else
+					bufer[br1] |= (temp[br1] >> (shiftNum - 4 - br * 5) * (-1));
+				
+			}
 		}
-		 
 	}
 }
 

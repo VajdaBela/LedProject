@@ -3,31 +3,31 @@ GccApplication2.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000020  00800100  00000266  000002fa  2**0
+  0 .data         00000022  00800100  00000346  000003da  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000266  00000000  00000000  00000094  2**1
+  1 .text         00000346  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000000e  00800120  00800120  0000031a  2**0
+  2 .bss          0000000e  00800122  00800122  000003fc  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000031a  2**0
+  3 .comment      00000030  00000000  00000000  000003fc  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000034c  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000042c  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000048  00000000  00000000  00000388  2**0
+  5 .debug_aranges 00000048  00000000  00000000  00000468  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000307  00000000  00000000  000003d0  2**0
+  6 .debug_info   0000032c  00000000  00000000  000004b0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000174  00000000  00000000  000006d7  2**0
+  7 .debug_abbrev 0000016e  00000000  00000000  000007dc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000216  00000000  00000000  0000084b  2**0
+  8 .debug_line   0000024c  00000000  00000000  0000094a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000d4  00000000  00000000  00000a64  2**2
+  9 .debug_frame  000000ec  00000000  00000000  00000b98  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000001a3  00000000  00000000  00000b38  2**0
+ 10 .debug_str    000001a3  00000000  00000000  00000c84  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000002bd  00000000  00000000  00000cdb  2**0
+ 11 .debug_loc    0000031d  00000000  00000000  00000e27  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000070  00000000  00000000  00000f98  2**0
+ 12 .debug_ranges 00000068  00000000  00000000  00001144  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -72,18 +72,18 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e6 e6       	ldi	r30, 0x66	; 102
-  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7a:	e6 e4       	ldi	r30, 0x46	; 70
+  7c:	f3 e0       	ldi	r31, 0x03	; 3
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
   82:	0d 92       	st	X+, r0
-  84:	a0 32       	cpi	r26, 0x20	; 32
+  84:	a2 32       	cpi	r26, 0x22	; 34
   86:	b1 07       	cpc	r27, r17
   88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
 
 0000008a <__do_clear_bss>:
   8a:	21 e0       	ldi	r18, 0x01	; 1
-  8c:	a0 e2       	ldi	r26, 0x20	; 32
+  8c:	a2 e2       	ldi	r26, 0x22	; 34
   8e:	b1 e0       	ldi	r27, 0x01	; 1
   90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
 
@@ -91,17 +91,17 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	ae 32       	cpi	r26, 0x2E	; 46
+  94:	a0 33       	cpi	r26, 0x30	; 48
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
-  9a:	0e 94 14 01 	call	0x228	; 0x228 <main>
-  9e:	0c 94 31 01 	jmp	0x262	; 0x262 <_exit>
+  9a:	0e 94 85 01 	call	0x30a	; 0x30a <main>
+  9e:	0c 94 a1 01 	jmp	0x342	; 0x342 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 000000a6 <Shift>:
-char text[] = "0";
+char text[] = "012";
 
 
 void Shift(uint8_t state)
@@ -155,337 +155,471 @@ void clear()
 
 void SetBufer()
 {
-  c8:	8f 92       	push	r8
-  ca:	9f 92       	push	r9
-  cc:	af 92       	push	r10
-  ce:	bf 92       	push	r11
-  d0:	cf 92       	push	r12
-  d2:	df 92       	push	r13
-  d4:	ef 92       	push	r14
-  d6:	ff 92       	push	r15
-  d8:	0f 93       	push	r16
-  da:	1f 93       	push	r17
-  dc:	cf 93       	push	r28
-  de:	df 93       	push	r29
-  e0:	cd b7       	in	r28, 0x3d	; 61
-  e2:	de b7       	in	r29, 0x3e	; 62
-  e4:	27 97       	sbiw	r28, 0x07	; 7
-  e6:	0f b6       	in	r0, 0x3f	; 63
-  e8:	f8 94       	cli
-  ea:	de bf       	out	0x3e, r29	; 62
-  ec:	0f be       	out	0x3f, r0	; 63
-  ee:	cd bf       	out	0x3d, r28	; 61
-	uint8_t temp[7] = {0};
-  f0:	fe 01       	movw	r30, r28
-  f2:	31 96       	adiw	r30, 0x01	; 1
-  f4:	87 e0       	ldi	r24, 0x07	; 7
-  f6:	df 01       	movw	r26, r30
-  f8:	1d 92       	st	X+, r1
-  fa:	8a 95       	dec	r24
-  fc:	e9 f7       	brne	.-6      	; 0xf8 <SetBufer+0x30>
-		}
-		
-		//set bufer
-		for (uint8_t br1 = 0; br1 < 7; ++br1)
-		{
-			bufer[br1] = (temp[br1] << (shiftNum - 4));
-  fe:	20 91 02 01 	lds	r18, 0x0102	; 0x800102 <shiftNum>
- 102:	30 e0       	ldi	r19, 0x00	; 0
- 104:	24 50       	subi	r18, 0x04	; 4
- 106:	31 09       	sbc	r19, r1
+  c8:	3f 92       	push	r3
+  ca:	4f 92       	push	r4
+  cc:	5f 92       	push	r5
+  ce:	6f 92       	push	r6
+  d0:	7f 92       	push	r7
+  d2:	8f 92       	push	r8
+  d4:	9f 92       	push	r9
+  d6:	af 92       	push	r10
+  d8:	bf 92       	push	r11
+  da:	cf 92       	push	r12
+  dc:	df 92       	push	r13
+  de:	ef 92       	push	r14
+  e0:	ff 92       	push	r15
+  e2:	0f 93       	push	r16
+  e4:	1f 93       	push	r17
+  e6:	cf 93       	push	r28
+  e8:	df 93       	push	r29
+  ea:	cd b7       	in	r28, 0x3d	; 61
+  ec:	de b7       	in	r29, 0x3e	; 62
+  ee:	2e 97       	sbiw	r28, 0x0e	; 14
+  f0:	0f b6       	in	r0, 0x3f	; 63
+  f2:	f8 94       	cli
+  f4:	de bf       	out	0x3e, r29	; 62
+  f6:	0f be       	out	0x3f, r0	; 63
+  f8:	cd bf       	out	0x3d, r28	; 61
+  fa:	80 e0       	ldi	r24, 0x00	; 0
+  fc:	90 e0       	ldi	r25, 0x00	; 0
+	//clear bufer
+	for(uint8_t br1 =  0; br1 < 7; ++br1)
+	{
+		bufer[br1] = 0;
+  fe:	fc 01       	movw	r30, r24
+ 100:	ee 0f       	add	r30, r30
+ 102:	ff 1f       	adc	r31, r31
+ 104:	ee 5d       	subi	r30, 0xDE	; 222
+ 106:	fe 4f       	sbci	r31, 0xFE	; 254
+ 108:	11 82       	std	Z+1, r1	; 0x01
+ 10a:	10 82       	st	Z, r1
+ 10c:	01 96       	adiw	r24, 0x01	; 1
 
 
 void SetBufer()
 {
-	uint8_t temp[7] = {0};
-	for(uint8_t br = 0; br < strlen(text); ++br)
- 108:	b1 2c       	mov	r11, r1
- 10a:	0f 2e       	mov	r0, r31
- 10c:	f0 e0       	ldi	r31, 0x00	; 0
- 10e:	ef 2e       	mov	r14, r31
- 110:	f1 e0       	ldi	r31, 0x01	; 1
- 112:	ff 2e       	mov	r15, r31
- 114:	f0 2d       	mov	r31, r0
- 116:	8f 01       	movw	r16, r30
- 118:	be 01       	movw	r22, r28
- 11a:	68 5f       	subi	r22, 0xF8	; 248
- 11c:	7f 4f       	sbci	r23, 0xFF	; 255
+	//clear bufer
+	for(uint8_t br1 =  0; br1 < 7; ++br1)
+ 10e:	87 30       	cpi	r24, 0x07	; 7
+ 110:	91 05       	cpc	r25, r1
+ 112:	a9 f7       	brne	.-22     	; 0xfe <SetBufer+0x36>
 	{
-		//set temp
-		for(uint8_t br1 = 0; br1 < 7; ++br1)
-		{
-			temp[br1] = numbers [text[br] - 48][br1];
- 11e:	ae 2e       	mov	r10, r30
- 120:	91 2e       	mov	r9, r17
- 122:	0f 2e       	mov	r0, r31
- 124:	f0 e2       	ldi	r31, 0x20	; 32
- 126:	cf 2e       	mov	r12, r31
- 128:	f1 e0       	ldi	r31, 0x01	; 1
- 12a:	df 2e       	mov	r13, r31
- 12c:	f0 2d       	mov	r31, r0
- 12e:	4e e2       	ldi	r20, 0x2E	; 46
- 130:	51 e0       	ldi	r21, 0x01	; 1
-
-
-void SetBufer()
-{
-	uint8_t temp[7] = {0};
+		bufer[br1] = 0;
+	}
+	
+	uint16_t temp[7] = {0};
+ 114:	fe 01       	movw	r30, r28
+ 116:	31 96       	adiw	r30, 0x01	; 1
+ 118:	8e e0       	ldi	r24, 0x0E	; 14
+ 11a:	df 01       	movw	r26, r30
+ 11c:	1d 92       	st	X+, r1
+ 11e:	8a 95       	dec	r24
+ 120:	e9 f7       	brne	.-6      	; 0x11c <SetBufer+0x54>
 	for(uint8_t br = 0; br < strlen(text); ++br)
- 132:	17 c0       	rjmp	.+46     	; 0x162 <SetBufer+0x9a>
-	{
-		//set temp
-		for(uint8_t br1 = 0; br1 < 7; ++br1)
-		{
-			temp[br1] = numbers [text[br] - 48][br1];
- 134:	8d 90       	ld	r8, X+
- 136:	81 92       	st	Z+, r8
-{
-	uint8_t temp[7] = {0};
-	for(uint8_t br = 0; br < strlen(text); ++br)
-	{
-		//set temp
-		for(uint8_t br1 = 0; br1 < 7; ++br1)
- 138:	e6 17       	cp	r30, r22
- 13a:	f7 07       	cpc	r31, r23
- 13c:	d9 f7       	brne	.-10     	; 0x134 <SetBufer+0x6c>
- 13e:	d6 01       	movw	r26, r12
-		}
+ 122:	b1 2c       	mov	r11, r1
+ 124:	0f 2e       	mov	r0, r31
+ 126:	f0 e0       	ldi	r31, 0x00	; 0
+ 128:	8f 2e       	mov	r8, r31
+ 12a:	f1 e0       	ldi	r31, 0x01	; 1
+ 12c:	9f 2e       	mov	r9, r31
+ 12e:	f0 2d       	mov	r31, r0
+ 130:	2f 01       	movw	r4, r30
+			}
 		
-		//set bufer
-		for (uint8_t br1 = 0; br1 < 7; ++br1)
-		{
-			bufer[br1] = (temp[br1] << (shiftNum - 4));
- 140:	fc 01       	movw	r30, r24
- 142:	81 90       	ld	r8, Z+
- 144:	cf 01       	movw	r24, r30
- 146:	e8 2d       	mov	r30, r8
- 148:	f0 e0       	ldi	r31, 0x00	; 0
- 14a:	02 2e       	mov	r0, r18
- 14c:	02 c0       	rjmp	.+4      	; 0x152 <SetBufer+0x8a>
- 14e:	ee 0f       	add	r30, r30
- 150:	ff 1f       	adc	r31, r31
- 152:	0a 94       	dec	r0
- 154:	e2 f7       	brpl	.-8      	; 0x14e <SetBufer+0x86>
- 156:	ed 93       	st	X+, r30
- 158:	fd 93       	st	X+, r31
-		{
-			temp[br1] = numbers [text[br] - 48][br1];
-		}
-		
-		//set bufer
-		for (uint8_t br1 = 0; br1 < 7; ++br1)
- 15a:	a4 17       	cp	r26, r20
- 15c:	b5 07       	cpc	r27, r21
- 15e:	81 f7       	brne	.-32     	; 0x140 <SetBufer+0x78>
-
-
-void SetBufer()
-{
-	uint8_t temp[7] = {0};
-	for(uint8_t br = 0; br < strlen(text); ++br)
- 160:	b3 94       	inc	r11
- 162:	f7 01       	movw	r30, r14
- 164:	01 90       	ld	r0, Z+
- 166:	00 20       	and	r0, r0
- 168:	e9 f7       	brne	.-6      	; 0x164 <SetBufer+0x9c>
- 16a:	31 97       	sbiw	r30, 0x01	; 1
- 16c:	cf 01       	movw	r24, r30
- 16e:	80 50       	subi	r24, 0x00	; 0
- 170:	91 40       	sbci	r25, 0x01	; 1
- 172:	eb 2d       	mov	r30, r11
- 174:	f0 e0       	ldi	r31, 0x00	; 0
- 176:	e8 17       	cp	r30, r24
- 178:	f9 07       	cpc	r31, r25
- 17a:	a0 f4       	brcc	.+40     	; 0x1a4 <SetBufer+0xdc>
+			//set temp
+			for(uint8_t br1 = 0; br1 < 7; ++br1)
+			{
+				temp[br1] = numbers[text[br] - 48][br1];
+ 132:	6e 2e       	mov	r6, r30
+ 134:	35 2c       	mov	r3, r5
+ 136:	a1 2c       	mov	r10, r1
+ 138:	71 2c       	mov	r7, r1
+				if((shiftNum - 4 - br * 5) > 0)
+				{
+					bufer[br1] |= (temp[br1] << (shiftNum - 4 - br * 5));
+				}
+				else
+					bufer[br1] |= (temp[br1] >> (shiftNum - 4 - br * 5) * (-1));
+ 13a:	68 94       	set
+ 13c:	cc 24       	eor	r12, r12
+ 13e:	c2 f8       	bld	r12, 2
+ 140:	d1 2c       	mov	r13, r1
 	{
-		//set temp
-		for(uint8_t br1 = 0; br1 < 7; ++br1)
+		bufer[br1] = 0;
+	}
+	
+	uint16_t temp[7] = {0};
+	for(uint8_t br = 0; br < strlen(text); ++br)
+ 142:	8d c0       	rjmp	.+282    	; 0x25e <SetBufer+0x196>
+	{
+		if ((shiftNum - br * 5 - 5) < 16)
+ 144:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <shiftNum>
+ 148:	6b 2d       	mov	r22, r11
+ 14a:	70 e0       	ldi	r23, 0x00	; 0
+ 14c:	2b ef       	ldi	r18, 0xFB	; 251
+ 14e:	26 03       	mulsu	r18, r22
+ 150:	80 01       	movw	r16, r0
+ 152:	27 9f       	mul	r18, r23
+ 154:	10 0d       	add	r17, r0
+ 156:	11 24       	eor	r1, r1
+ 158:	d8 01       	movw	r26, r16
+ 15a:	a8 0f       	add	r26, r24
+ 15c:	b1 1d       	adc	r27, r1
+ 15e:	cd 01       	movw	r24, r26
+ 160:	05 97       	sbiw	r24, 0x05	; 5
+ 162:	40 97       	sbiw	r24, 0x10	; 16
+ 164:	0c f0       	brlt	.+2      	; 0x168 <SetBufer+0xa0>
+ 166:	7a c0       	rjmp	.+244    	; 0x25c <SetBufer+0x194>
 		{
-			temp[br1] = numbers [text[br] - 48][br1];
- 17c:	e0 50       	subi	r30, 0x00	; 0
- 17e:	ff 4f       	sbci	r31, 0xFF	; 255
- 180:	80 81       	ld	r24, Z
- 182:	90 e0       	ldi	r25, 0x00	; 0
- 184:	c0 97       	sbiw	r24, 0x30	; 48
- 186:	dc 01       	movw	r26, r24
- 188:	aa 0f       	add	r26, r26
- 18a:	bb 1f       	adc	r27, r27
- 18c:	aa 0f       	add	r26, r26
- 18e:	bb 1f       	adc	r27, r27
- 190:	aa 0f       	add	r26, r26
- 192:	bb 1f       	adc	r27, r27
- 194:	a8 1b       	sub	r26, r24
- 196:	b9 0b       	sbc	r27, r25
- 198:	ad 5f       	subi	r26, 0xFD	; 253
- 19a:	be 4f       	sbci	r27, 0xFE	; 254
- 19c:	c8 01       	movw	r24, r16
- 19e:	ea 2d       	mov	r30, r10
- 1a0:	f9 2d       	mov	r31, r9
- 1a2:	c8 cf       	rjmp	.-112    	; 0x134 <SetBufer+0x6c>
-		{
-			bufer[br1] = (temp[br1] << (shiftNum - 4));
+			if ((shiftNum - br * 5) < 0)
+ 168:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <shiftNum>
+ 16c:	f8 01       	movw	r30, r16
+ 16e:	e8 0f       	add	r30, r24
+ 170:	f1 1d       	adc	r31, r1
+ 172:	ff 23       	and	r31, r31
+ 174:	0c f4       	brge	.+2      	; 0x178 <SetBufer+0xb0>
+ 176:	80 c0       	rjmp	.+256    	; 0x278 <SetBufer+0x1b0>
+			}
+		
+			//set temp
+			for(uint8_t br1 = 0; br1 < 7; ++br1)
+			{
+				temp[br1] = numbers[text[br] - 48][br1];
+ 178:	fb 01       	movw	r30, r22
+ 17a:	e0 50       	subi	r30, 0x00	; 0
+ 17c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 17e:	20 81       	ld	r18, Z
+ 180:	30 e0       	ldi	r19, 0x00	; 0
+ 182:	20 53       	subi	r18, 0x30	; 48
+ 184:	31 09       	sbc	r19, r1
+ 186:	d2 01       	movw	r26, r4
+ 188:	e6 2c       	mov	r14, r6
+ 18a:	f3 2c       	mov	r15, r3
+ 18c:	8a 2d       	mov	r24, r10
+ 18e:	97 2d       	mov	r25, r7
+ 190:	a9 01       	movw	r20, r18
+ 192:	44 0f       	add	r20, r20
+ 194:	55 1f       	adc	r21, r21
+ 196:	44 0f       	add	r20, r20
+ 198:	55 1f       	adc	r21, r21
+ 19a:	44 0f       	add	r20, r20
+ 19c:	55 1f       	adc	r21, r21
+ 19e:	42 1b       	sub	r20, r18
+ 1a0:	53 0b       	sbc	r21, r19
+ 1a2:	9a 01       	movw	r18, r20
+ 1a4:	28 0f       	add	r18, r24
+ 1a6:	39 1f       	adc	r19, r25
+ 1a8:	2c 5f       	subi	r18, 0xFC	; 252
+ 1aa:	3e 4f       	sbci	r19, 0xFE	; 254
+ 1ac:	f9 01       	movw	r30, r18
+ 1ae:	20 81       	ld	r18, Z
+ 1b0:	30 e0       	ldi	r19, 0x00	; 0
+ 1b2:	f7 01       	movw	r30, r14
+ 1b4:	21 93       	st	Z+, r18
+ 1b6:	31 93       	st	Z+, r19
+ 1b8:	7f 01       	movw	r14, r30
+ 1ba:	01 96       	adiw	r24, 0x01	; 1
+			{
+				break;
+			}
+		
+			//set temp
+			for(uint8_t br1 = 0; br1 < 7; ++br1)
+ 1bc:	87 30       	cpi	r24, 0x07	; 7
+ 1be:	91 05       	cpc	r25, r1
+ 1c0:	81 f7       	brne	.-32     	; 0x1a2 <SetBufer+0xda>
+				if((shiftNum - 4 - br * 5) > 0)
+				{
+					bufer[br1] |= (temp[br1] << (shiftNum - 4 - br * 5));
+				}
+				else
+					bufer[br1] |= (temp[br1] >> (shiftNum - 4 - br * 5) * (-1));
+ 1c2:	7b 01       	movw	r14, r22
+ 1c4:	ee 0c       	add	r14, r14
+ 1c6:	ff 1c       	adc	r15, r15
+ 1c8:	ee 0c       	add	r14, r14
+ 1ca:	ff 1c       	adc	r15, r15
+ 1cc:	e6 0e       	add	r14, r22
+ 1ce:	f7 1e       	adc	r15, r23
+ 1d0:	2a 2d       	mov	r18, r10
+ 1d2:	37 2d       	mov	r19, r7
+			}
+			
+			//set bufer
+			for (uint8_t br1 = 0; br1 < 7; ++br1)
+			{
+				if((shiftNum - 4 - br * 5) > 0)
+ 1d4:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <shiftNum>
+ 1d8:	90 e0       	ldi	r25, 0x00	; 0
+ 1da:	04 97       	sbiw	r24, 0x04	; 4
+ 1dc:	80 0f       	add	r24, r16
+ 1de:	91 1f       	adc	r25, r17
+ 1e0:	18 16       	cp	r1, r24
+ 1e2:	19 06       	cpc	r1, r25
+ 1e4:	d4 f4       	brge	.+52     	; 0x21a <SetBufer+0x152>
+				{
+					bufer[br1] |= (temp[br1] << (shiftNum - 4 - br * 5));
+ 1e6:	80 91 21 01 	lds	r24, 0x0121	; 0x800121 <shiftNum>
+ 1ea:	f9 01       	movw	r30, r18
+ 1ec:	ee 0f       	add	r30, r30
+ 1ee:	ff 1f       	adc	r31, r31
+ 1f0:	ee 5d       	subi	r30, 0xDE	; 222
+ 1f2:	fe 4f       	sbci	r31, 0xFE	; 254
+ 1f4:	40 81       	ld	r20, Z
+ 1f6:	51 81       	ldd	r21, Z+1	; 0x01
+ 1f8:	90 e0       	ldi	r25, 0x00	; 0
+ 1fa:	04 97       	sbiw	r24, 0x04	; 4
+ 1fc:	80 0f       	add	r24, r16
+ 1fe:	91 1f       	adc	r25, r17
+ 200:	6d 91       	ld	r22, X+
+ 202:	7c 91       	ld	r23, X
+ 204:	11 97       	sbiw	r26, 0x01	; 1
+ 206:	02 c0       	rjmp	.+4      	; 0x20c <SetBufer+0x144>
+ 208:	66 0f       	add	r22, r22
+ 20a:	77 1f       	adc	r23, r23
+ 20c:	8a 95       	dec	r24
+ 20e:	e2 f7       	brpl	.-8      	; 0x208 <SetBufer+0x140>
+ 210:	64 2b       	or	r22, r20
+ 212:	75 2b       	or	r23, r21
+ 214:	71 83       	std	Z+1, r23	; 0x01
+ 216:	60 83       	st	Z, r22
+ 218:	1a c0       	rjmp	.+52     	; 0x24e <SetBufer+0x186>
+				}
+				else
+					bufer[br1] |= (temp[br1] >> (shiftNum - 4 - br * 5) * (-1));
+ 21a:	40 91 21 01 	lds	r20, 0x0121	; 0x800121 <shiftNum>
+ 21e:	f9 01       	movw	r30, r18
+ 220:	ee 0f       	add	r30, r30
+ 222:	ff 1f       	adc	r31, r31
+ 224:	ee 5d       	subi	r30, 0xDE	; 222
+ 226:	fe 4f       	sbci	r31, 0xFE	; 254
+ 228:	80 81       	ld	r24, Z
+ 22a:	91 81       	ldd	r25, Z+1	; 0x01
+ 22c:	b6 01       	movw	r22, r12
+ 22e:	64 1b       	sub	r22, r20
+ 230:	71 09       	sbc	r23, r1
+ 232:	6e 0d       	add	r22, r14
+ 234:	7f 1d       	adc	r23, r15
+ 236:	4d 91       	ld	r20, X+
+ 238:	5c 91       	ld	r21, X
+ 23a:	11 97       	sbiw	r26, 0x01	; 1
+ 23c:	02 c0       	rjmp	.+4      	; 0x242 <SetBufer+0x17a>
+ 23e:	56 95       	lsr	r21
+ 240:	47 95       	ror	r20
+ 242:	6a 95       	dec	r22
+ 244:	e2 f7       	brpl	.-8      	; 0x23e <SetBufer+0x176>
+ 246:	48 2b       	or	r20, r24
+ 248:	59 2b       	or	r21, r25
+ 24a:	51 83       	std	Z+1, r21	; 0x01
+ 24c:	40 83       	st	Z, r20
+ 24e:	2f 5f       	subi	r18, 0xFF	; 255
+ 250:	3f 4f       	sbci	r19, 0xFF	; 255
+ 252:	12 96       	adiw	r26, 0x02	; 2
+			{
+				temp[br1] = numbers[text[br] - 48][br1];
+			}
+			
+			//set bufer
+			for (uint8_t br1 = 0; br1 < 7; ++br1)
+ 254:	27 30       	cpi	r18, 0x07	; 7
+ 256:	31 05       	cpc	r19, r1
+ 258:	09 f0       	breq	.+2      	; 0x25c <SetBufer+0x194>
+ 25a:	bc cf       	rjmp	.-136    	; 0x1d4 <SetBufer+0x10c>
+	{
+		bufer[br1] = 0;
+	}
+	
+	uint16_t temp[7] = {0};
+	for(uint8_t br = 0; br < strlen(text); ++br)
+ 25c:	b3 94       	inc	r11
+ 25e:	f4 01       	movw	r30, r8
+ 260:	01 90       	ld	r0, Z+
+ 262:	00 20       	and	r0, r0
+ 264:	e9 f7       	brne	.-6      	; 0x260 <SetBufer+0x198>
+ 266:	31 97       	sbiw	r30, 0x01	; 1
+ 268:	e0 50       	subi	r30, 0x00	; 0
+ 26a:	f1 40       	sbci	r31, 0x01	; 1
+ 26c:	8b 2d       	mov	r24, r11
+ 26e:	90 e0       	ldi	r25, 0x00	; 0
+ 270:	8e 17       	cp	r24, r30
+ 272:	9f 07       	cpc	r25, r31
+ 274:	08 f4       	brcc	.+2      	; 0x278 <SetBufer+0x1b0>
+ 276:	66 cf       	rjmp	.-308    	; 0x144 <SetBufer+0x7c>
+					bufer[br1] |= (temp[br1] >> (shiftNum - 4 - br * 5) * (-1));
+				
+			}
 		}
-		 
 	}
 }
- 1a4:	27 96       	adiw	r28, 0x07	; 7
- 1a6:	0f b6       	in	r0, 0x3f	; 63
- 1a8:	f8 94       	cli
- 1aa:	de bf       	out	0x3e, r29	; 62
- 1ac:	0f be       	out	0x3f, r0	; 63
- 1ae:	cd bf       	out	0x3d, r28	; 61
- 1b0:	df 91       	pop	r29
- 1b2:	cf 91       	pop	r28
- 1b4:	1f 91       	pop	r17
- 1b6:	0f 91       	pop	r16
- 1b8:	ff 90       	pop	r15
- 1ba:	ef 90       	pop	r14
- 1bc:	df 90       	pop	r13
- 1be:	cf 90       	pop	r12
- 1c0:	bf 90       	pop	r11
- 1c2:	af 90       	pop	r10
- 1c4:	9f 90       	pop	r9
- 1c6:	8f 90       	pop	r8
- 1c8:	08 95       	ret
+ 278:	2e 96       	adiw	r28, 0x0e	; 14
+ 27a:	0f b6       	in	r0, 0x3f	; 63
+ 27c:	f8 94       	cli
+ 27e:	de bf       	out	0x3e, r29	; 62
+ 280:	0f be       	out	0x3f, r0	; 63
+ 282:	cd bf       	out	0x3d, r28	; 61
+ 284:	df 91       	pop	r29
+ 286:	cf 91       	pop	r28
+ 288:	1f 91       	pop	r17
+ 28a:	0f 91       	pop	r16
+ 28c:	ff 90       	pop	r15
+ 28e:	ef 90       	pop	r14
+ 290:	df 90       	pop	r13
+ 292:	cf 90       	pop	r12
+ 294:	bf 90       	pop	r11
+ 296:	af 90       	pop	r10
+ 298:	9f 90       	pop	r9
+ 29a:	8f 90       	pop	r8
+ 29c:	7f 90       	pop	r7
+ 29e:	6f 90       	pop	r6
+ 2a0:	5f 90       	pop	r5
+ 2a2:	4f 90       	pop	r4
+ 2a4:	3f 90       	pop	r3
+ 2a6:	08 95       	ret
 
-000001ca <TurnOnRow>:
+000002a8 <TurnOnRow>:
 
 
 
 void TurnOnRow(uint8_t row)
 {
 	PORTB &= allRows[ERASE];
- 1ca:	95 b1       	in	r25, 0x05	; 5
- 1cc:	90 7f       	andi	r25, 0xF0	; 240
- 1ce:	95 b9       	out	0x05, r25	; 5
+ 2a8:	90 91 20 01 	lds	r25, 0x0120	; 0x800120 <allRows+0x7>
+ 2ac:	25 b1       	in	r18, 0x05	; 5
+ 2ae:	92 23       	and	r25, r18
+ 2b0:	95 b9       	out	0x05, r25	; 5
 	PORTB |= allRows[row];
- 1d0:	95 b1       	in	r25, 0x05	; 5
- 1d2:	e8 2f       	mov	r30, r24
- 1d4:	f0 e0       	ldi	r31, 0x00	; 0
- 1d6:	e8 5e       	subi	r30, 0xE8	; 232
- 1d8:	fe 4f       	sbci	r31, 0xFE	; 254
- 1da:	80 81       	ld	r24, Z
- 1dc:	89 2b       	or	r24, r25
- 1de:	85 b9       	out	0x05, r24	; 5
- 1e0:	08 95       	ret
+ 2b2:	e8 2f       	mov	r30, r24
+ 2b4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2b6:	e7 5e       	subi	r30, 0xE7	; 231
+ 2b8:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2ba:	90 81       	ld	r25, Z
+ 2bc:	85 b1       	in	r24, 0x05	; 5
+ 2be:	89 2b       	or	r24, r25
+ 2c0:	85 b9       	out	0x05, r24	; 5
+ 2c2:	08 95       	ret
 
-000001e2 <PutData>:
+000002c4 <PutData>:
 }
 
 
 void PutData(uint8_t data)
 {
- 1e2:	0f 93       	push	r16
- 1e4:	1f 93       	push	r17
- 1e6:	cf 93       	push	r28
- 1e8:	df 93       	push	r29
- 1ea:	c0 e0       	ldi	r28, 0x00	; 0
- 1ec:	d0 e0       	ldi	r29, 0x00	; 0
+ 2c4:	0f 93       	push	r16
+ 2c6:	1f 93       	push	r17
+ 2c8:	cf 93       	push	r28
+ 2ca:	df 93       	push	r29
+ 2cc:	c0 e0       	ldi	r28, 0x00	; 0
+ 2ce:	d0 e0       	ldi	r29, 0x00	; 0
 	//acording to Vajda
 	for(uint8_t br = 0; br < 16; ++br)
 	{
 		if(data & (1 << br))
- 1ee:	08 2f       	mov	r16, r24
- 1f0:	10 e0       	ldi	r17, 0x00	; 0
- 1f2:	98 01       	movw	r18, r16
- 1f4:	0c 2e       	mov	r0, r28
- 1f6:	02 c0       	rjmp	.+4      	; 0x1fc <PutData+0x1a>
- 1f8:	35 95       	asr	r19
- 1fa:	27 95       	ror	r18
- 1fc:	0a 94       	dec	r0
- 1fe:	e2 f7       	brpl	.-8      	; 0x1f8 <PutData+0x16>
- 200:	20 ff       	sbrs	r18, 0
- 202:	04 c0       	rjmp	.+8      	; 0x20c <PutData+0x2a>
+ 2d0:	08 2f       	mov	r16, r24
+ 2d2:	10 e0       	ldi	r17, 0x00	; 0
+ 2d4:	98 01       	movw	r18, r16
+ 2d6:	0c 2e       	mov	r0, r28
+ 2d8:	02 c0       	rjmp	.+4      	; 0x2de <PutData+0x1a>
+ 2da:	35 95       	asr	r19
+ 2dc:	27 95       	ror	r18
+ 2de:	0a 94       	dec	r0
+ 2e0:	e2 f7       	brpl	.-8      	; 0x2da <PutData+0x16>
+ 2e2:	20 ff       	sbrs	r18, 0
+ 2e4:	04 c0       	rjmp	.+8      	; 0x2ee <PutData+0x2a>
 		Shift(1);
- 204:	81 e0       	ldi	r24, 0x01	; 1
- 206:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
- 20a:	03 c0       	rjmp	.+6      	; 0x212 <PutData+0x30>
+ 2e6:	81 e0       	ldi	r24, 0x01	; 1
+ 2e8:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
+ 2ec:	03 c0       	rjmp	.+6      	; 0x2f4 <PutData+0x30>
 		else
 		Shift(0);
- 20c:	80 e0       	ldi	r24, 0x00	; 0
- 20e:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
- 212:	21 96       	adiw	r28, 0x01	; 1
+ 2ee:	80 e0       	ldi	r24, 0x00	; 0
+ 2f0:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
+ 2f4:	21 96       	adiw	r28, 0x01	; 1
 
 
 void PutData(uint8_t data)
 {
 	//acording to Vajda
 	for(uint8_t br = 0; br < 16; ++br)
- 214:	c0 31       	cpi	r28, 0x10	; 16
- 216:	d1 05       	cpc	r29, r1
- 218:	61 f7       	brne	.-40     	; 0x1f2 <PutData+0x10>
+ 2f6:	c0 31       	cpi	r28, 0x10	; 16
+ 2f8:	d1 05       	cpc	r29, r1
+ 2fa:	61 f7       	brne	.-40     	; 0x2d4 <PutData+0x10>
 		if(data & (1 << br))
 		Shift(1);
 		else
 		Shift(0);
 	}
 	PORTB |= (1 << RCK);
- 21a:	2c 9a       	sbi	0x05, 4	; 5
+ 2fc:	2c 9a       	sbi	0x05, 4	; 5
 	PORTB &= ~(1 << RCK);
- 21c:	2c 98       	cbi	0x05, 4	; 5
+ 2fe:	2c 98       	cbi	0x05, 4	; 5
 	} 
 	
 	PORTB |= (1 << RCK);
 	PORTB &= ~(1 << SERIN);
 	PORTC &= ~(1 << SRCK);*/
 }
- 21e:	df 91       	pop	r29
- 220:	cf 91       	pop	r28
- 222:	1f 91       	pop	r17
- 224:	0f 91       	pop	r16
- 226:	08 95       	ret
+ 300:	df 91       	pop	r29
+ 302:	cf 91       	pop	r28
+ 304:	1f 91       	pop	r17
+ 306:	0f 91       	pop	r16
+ 308:	08 95       	ret
 
-00000228 <main>:
+0000030a <main>:
 
 int main()
 {
 	
 	//setup
 	DDRB = 0xFF;
- 228:	8f ef       	ldi	r24, 0xFF	; 255
- 22a:	84 b9       	out	0x04, r24	; 4
+ 30a:	8f ef       	ldi	r24, 0xFF	; 255
+ 30c:	84 b9       	out	0x04, r24	; 4
 	DDRC |= (1 << 5);
- 22c:	3d 9a       	sbi	0x07, 5	; 7
+ 30e:	3d 9a       	sbi	0x07, 5	; 7
 	clear();
- 22e:	0e 94 5b 00 	call	0xb6	; 0xb6 <clear>
- 232:	0f 2e       	mov	r0, r31
- 234:	f0 e2       	ldi	r31, 0x20	; 32
- 236:	ef 2e       	mov	r14, r31
- 238:	f1 e0       	ldi	r31, 0x01	; 1
- 23a:	ff 2e       	mov	r15, r31
- 23c:	f0 2d       	mov	r31, r0
+ 310:	0e 94 5b 00 	call	0xb6	; 0xb6 <clear>
+	PORTC &= ~(1 << SRCK);*/
+}
+
+
+int main()
+{
+ 314:	00 e0       	ldi	r16, 0x00	; 0
+ 316:	10 e0       	ldi	r17, 0x00	; 0
+ 318:	c0 2f       	mov	r28, r16
+ 31a:	d1 2f       	mov	r29, r17
 	
 	while(1)
 	{
 			for(uint8_t br = 0; br < 7; ++br)
- 23e:	d0 e0       	ldi	r29, 0x00	; 0
- 240:	87 01       	movw	r16, r14
- 242:	cd 2f       	mov	r28, r29
 			{
 				SetBufer();
- 244:	0e 94 64 00 	call	0xc8	; 0xc8 <SetBufer>
+ 31c:	0e 94 64 00 	call	0xc8	; 0xc8 <SetBufer>
 				PutData(bufer[br]);
- 248:	f8 01       	movw	r30, r16
- 24a:	80 81       	ld	r24, Z
- 24c:	0e 5f       	subi	r16, 0xFE	; 254
- 24e:	1f 4f       	sbci	r17, 0xFF	; 255
- 250:	0e 94 f1 00 	call	0x1e2	; 0x1e2 <PutData>
+ 320:	fe 01       	movw	r30, r28
+ 322:	ee 0f       	add	r30, r30
+ 324:	ff 1f       	adc	r31, r31
+ 326:	ee 5d       	subi	r30, 0xDE	; 222
+ 328:	fe 4f       	sbci	r31, 0xFE	; 254
+ 32a:	80 81       	ld	r24, Z
+ 32c:	91 81       	ldd	r25, Z+1	; 0x01
+ 32e:	0e 94 62 01 	call	0x2c4	; 0x2c4 <PutData>
 				TurnOnRow(br);
- 254:	8c 2f       	mov	r24, r28
- 256:	0e 94 e5 00 	call	0x1ca	; 0x1ca <TurnOnRow>
+ 332:	8c 2f       	mov	r24, r28
+ 334:	0e 94 54 01 	call	0x2a8	; 0x2a8 <TurnOnRow>
+ 338:	21 96       	adiw	r28, 0x01	; 1
 	DDRC |= (1 << 5);
 	clear();
 	
 	while(1)
 	{
 			for(uint8_t br = 0; br < 7; ++br)
- 25a:	cf 5f       	subi	r28, 0xFF	; 255
- 25c:	c7 30       	cpi	r28, 0x07	; 7
- 25e:	91 f7       	brne	.-28     	; 0x244 <main+0x1c>
- 260:	ef cf       	rjmp	.-34     	; 0x240 <main+0x18>
+ 33a:	c7 30       	cpi	r28, 0x07	; 7
+ 33c:	d1 05       	cpc	r29, r1
+ 33e:	71 f7       	brne	.-36     	; 0x31c <main+0x12>
+ 340:	eb cf       	rjmp	.-42     	; 0x318 <main+0xe>
 
-00000262 <_exit>:
- 262:	f8 94       	cli
+00000342 <_exit>:
+ 342:	f8 94       	cli
 
-00000264 <__stop_program>:
- 264:	ff cf       	rjmp	.-2      	; 0x264 <__stop_program>
+00000344 <__stop_program>:
+ 344:	ff cf       	rjmp	.-2      	; 0x344 <__stop_program>
