@@ -187,7 +187,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x346
+.text           0x00000000      0x354
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Users/Kripton/Desktop/atmel studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328/avr5/crtatmega328.o
                 0x00000000                __vector_default
@@ -284,15 +284,15 @@ END GROUP
  .text.TurnOnRow
                 0x000002a8       0x1c main.o
                 0x000002a8                TurnOnRow
- .text.PutData  0x000002c4       0x46 main.o
+ .text.PutData  0x000002c4       0x54 main.o
                 0x000002c4                PutData
- .text.main     0x0000030a       0x38 main.o
-                0x0000030a                main
-                0x00000342                . = ALIGN (0x2)
+ .text.main     0x00000318       0x38 main.o
+                0x00000318                main
+                0x00000350                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000342        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
-                0x00000342                _exit
-                0x00000342                exit
+ .fini9         0x00000350        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000350                _exit
+                0x00000350                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -311,11 +311,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000342        0x4 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000350        0x4 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000346                _etext = .
+                0x00000354                _etext = .
 
-.data           0x00800100       0x22 load address 0x00000346
+.data           0x00800100       0x22 load address 0x00000354
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -343,8 +343,8 @@ END GROUP
                 0x00800130                shiftNum
  *(COMMON)
                 0x00800131                PROVIDE (__bss_end, .)
-                0x00000346                __data_load_start = LOADADDR (.data)
-                0x00000368                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000354                __data_load_start = LOADADDR (.data)
+                0x00000376                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800131        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -423,9 +423,9 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x32c
+.debug_info     0x00000000      0x32b
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x32c main.o
+ .debug_info    0x00000000      0x32b main.o
 
 .debug_abbrev   0x00000000      0x16e
  *(.debug_abbrev)
@@ -435,18 +435,18 @@ END GROUP
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x24c main.o
 
-.debug_frame    0x00000000       0xec
+.debug_frame    0x00000000       0xf8
  *(.debug_frame)
- .debug_frame   0x00000000       0xec main.o
+ .debug_frame   0x00000000       0xf8 main.o
 
 .debug_str      0x00000000      0x1a3
  *(.debug_str)
  .debug_str     0x00000000      0x1a3 main.o
                                 0x1dc (size before relaxing)
 
-.debug_loc      0x00000000      0x31d
+.debug_loc      0x00000000      0x341
  *(.debug_loc)
- .debug_loc     0x00000000      0x31d main.o
+ .debug_loc     0x00000000      0x341 main.o
 
 .debug_macinfo
  *(.debug_macinfo)

@@ -105,7 +105,7 @@ void TurnOnRow(uint8_t row)
 }
 
 
-void PutData(uint8_t data)
+void PutData(uint16_t data)
 {
 	//acording to Vajda
 	for(uint8_t br = 0; br < 16; ++br)

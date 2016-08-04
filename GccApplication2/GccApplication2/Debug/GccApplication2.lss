@@ -3,31 +3,31 @@ GccApplication2.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000022  00800100  00000346  000003da  2**0
+  0 .data         00000022  00800100  00000354  000003e8  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000346  00000000  00000000  00000094  2**1
+  1 .text         00000354  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000000f  00800122  00800122  000003fc  2**0
+  2 .bss          0000000f  00800122  00800122  0000040a  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000003fc  2**0
+  3 .comment      00000030  00000000  00000000  0000040a  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000042c  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000043c  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000048  00000000  00000000  00000468  2**0
+  5 .debug_aranges 00000048  00000000  00000000  00000478  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000032c  00000000  00000000  000004b0  2**0
+  6 .debug_info   0000032b  00000000  00000000  000004c0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000016e  00000000  00000000  000007dc  2**0
+  7 .debug_abbrev 0000016e  00000000  00000000  000007eb  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000024c  00000000  00000000  0000094a  2**0
+  8 .debug_line   0000024c  00000000  00000000  00000959  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000ec  00000000  00000000  00000b98  2**2
+  9 .debug_frame  000000f8  00000000  00000000  00000ba8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000001a3  00000000  00000000  00000c84  2**0
+ 10 .debug_str    000001a3  00000000  00000000  00000ca0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000031d  00000000  00000000  00000e27  2**0
+ 11 .debug_loc    00000341  00000000  00000000  00000e43  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000068  00000000  00000000  00001144  2**0
+ 12 .debug_ranges 00000068  00000000  00000000  00001184  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -72,7 +72,7 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e6 e4       	ldi	r30, 0x46	; 70
+  7a:	e4 e5       	ldi	r30, 0x54	; 84
   7c:	f3 e0       	ldi	r31, 0x03	; 3
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
@@ -94,8 +94,8 @@ Disassembly of section .text:
   94:	a1 33       	cpi	r26, 0x31	; 49
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
-  9a:	0e 94 85 01 	call	0x30a	; 0x30a <main>
-  9e:	0c 94 a1 01 	jmp	0x342	; 0x342 <_exit>
+  9a:	0e 94 8c 01 	call	0x318	; 0x318 <main>
+  9e:	0c 94 a8 01 	jmp	0x350	; 0x350 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -502,124 +502,131 @@ void TurnOnRow(uint8_t row)
 }
 
 
-void PutData(uint8_t data)
+void PutData(uint16_t data)
 {
- 2c4:	0f 93       	push	r16
- 2c6:	1f 93       	push	r17
- 2c8:	cf 93       	push	r28
- 2ca:	df 93       	push	r29
- 2cc:	c0 e0       	ldi	r28, 0x00	; 0
- 2ce:	d0 e0       	ldi	r29, 0x00	; 0
+ 2c4:	ef 92       	push	r14
+ 2c6:	ff 92       	push	r15
+ 2c8:	0f 93       	push	r16
+ 2ca:	1f 93       	push	r17
+ 2cc:	cf 93       	push	r28
+ 2ce:	df 93       	push	r29
+ 2d0:	7c 01       	movw	r14, r24
+ 2d2:	c0 e0       	ldi	r28, 0x00	; 0
+ 2d4:	d0 e0       	ldi	r29, 0x00	; 0
 	//acording to Vajda
 	for(uint8_t br = 0; br < 16; ++br)
 	{
 		if(data & (1 << br))
- 2d0:	08 2f       	mov	r16, r24
- 2d2:	10 e0       	ldi	r17, 0x00	; 0
- 2d4:	98 01       	movw	r18, r16
- 2d6:	0c 2e       	mov	r0, r28
- 2d8:	02 c0       	rjmp	.+4      	; 0x2de <PutData+0x1a>
- 2da:	35 95       	asr	r19
- 2dc:	27 95       	ror	r18
- 2de:	0a 94       	dec	r0
- 2e0:	e2 f7       	brpl	.-8      	; 0x2da <PutData+0x16>
- 2e2:	20 ff       	sbrs	r18, 0
- 2e4:	04 c0       	rjmp	.+8      	; 0x2ee <PutData+0x2a>
+ 2d6:	01 e0       	ldi	r16, 0x01	; 1
+ 2d8:	10 e0       	ldi	r17, 0x00	; 0
+ 2da:	98 01       	movw	r18, r16
+ 2dc:	0c 2e       	mov	r0, r28
+ 2de:	02 c0       	rjmp	.+4      	; 0x2e4 <PutData+0x20>
+ 2e0:	22 0f       	add	r18, r18
+ 2e2:	33 1f       	adc	r19, r19
+ 2e4:	0a 94       	dec	r0
+ 2e6:	e2 f7       	brpl	.-8      	; 0x2e0 <PutData+0x1c>
+ 2e8:	2e 21       	and	r18, r14
+ 2ea:	3f 21       	and	r19, r15
+ 2ec:	23 2b       	or	r18, r19
+ 2ee:	21 f0       	breq	.+8      	; 0x2f8 <PutData+0x34>
 		Shift(1);
- 2e6:	81 e0       	ldi	r24, 0x01	; 1
- 2e8:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
- 2ec:	03 c0       	rjmp	.+6      	; 0x2f4 <PutData+0x30>
+ 2f0:	81 e0       	ldi	r24, 0x01	; 1
+ 2f2:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
+ 2f6:	03 c0       	rjmp	.+6      	; 0x2fe <PutData+0x3a>
 		else
 		Shift(0);
- 2ee:	80 e0       	ldi	r24, 0x00	; 0
- 2f0:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
- 2f4:	21 96       	adiw	r28, 0x01	; 1
+ 2f8:	80 e0       	ldi	r24, 0x00	; 0
+ 2fa:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
+ 2fe:	21 96       	adiw	r28, 0x01	; 1
 
 
-void PutData(uint8_t data)
+void PutData(uint16_t data)
 {
 	//acording to Vajda
 	for(uint8_t br = 0; br < 16; ++br)
- 2f6:	c0 31       	cpi	r28, 0x10	; 16
- 2f8:	d1 05       	cpc	r29, r1
- 2fa:	61 f7       	brne	.-40     	; 0x2d4 <PutData+0x10>
+ 300:	c0 31       	cpi	r28, 0x10	; 16
+ 302:	d1 05       	cpc	r29, r1
+ 304:	51 f7       	brne	.-44     	; 0x2da <PutData+0x16>
 		if(data & (1 << br))
 		Shift(1);
 		else
 		Shift(0);
 	}
 	PORTB |= (1 << RCK);
- 2fc:	2c 9a       	sbi	0x05, 4	; 5
+ 306:	2c 9a       	sbi	0x05, 4	; 5
 	PORTB &= ~(1 << RCK);
- 2fe:	2c 98       	cbi	0x05, 4	; 5
+ 308:	2c 98       	cbi	0x05, 4	; 5
 	} 
 	
 	PORTB |= (1 << RCK);
 	PORTB &= ~(1 << SERIN);
 	PORTC &= ~(1 << SRCK);*/
 }
- 300:	df 91       	pop	r29
- 302:	cf 91       	pop	r28
- 304:	1f 91       	pop	r17
- 306:	0f 91       	pop	r16
- 308:	08 95       	ret
+ 30a:	df 91       	pop	r29
+ 30c:	cf 91       	pop	r28
+ 30e:	1f 91       	pop	r17
+ 310:	0f 91       	pop	r16
+ 312:	ff 90       	pop	r15
+ 314:	ef 90       	pop	r14
+ 316:	08 95       	ret
 
-0000030a <main>:
+00000318 <main>:
 
 int main()
 {
 	
 	//setup
 	DDRB = 0xFF;
- 30a:	8f ef       	ldi	r24, 0xFF	; 255
- 30c:	84 b9       	out	0x04, r24	; 4
+ 318:	8f ef       	ldi	r24, 0xFF	; 255
+ 31a:	84 b9       	out	0x04, r24	; 4
 	DDRC |= (1 << 5);
- 30e:	3d 9a       	sbi	0x07, 5	; 7
+ 31c:	3d 9a       	sbi	0x07, 5	; 7
 	clear();
- 310:	0e 94 5b 00 	call	0xb6	; 0xb6 <clear>
+ 31e:	0e 94 5b 00 	call	0xb6	; 0xb6 <clear>
 	PORTC &= ~(1 << SRCK);*/
 }
 
 
 int main()
 {
- 314:	00 e0       	ldi	r16, 0x00	; 0
- 316:	10 e0       	ldi	r17, 0x00	; 0
- 318:	c0 2f       	mov	r28, r16
- 31a:	d1 2f       	mov	r29, r17
+ 322:	00 e0       	ldi	r16, 0x00	; 0
+ 324:	10 e0       	ldi	r17, 0x00	; 0
+ 326:	c0 2f       	mov	r28, r16
+ 328:	d1 2f       	mov	r29, r17
 	
 	while(1)
 	{
 			for(uint8_t br = 0; br < 7; ++br)
 			{
 				SetBufer();
- 31c:	0e 94 64 00 	call	0xc8	; 0xc8 <SetBufer>
+ 32a:	0e 94 64 00 	call	0xc8	; 0xc8 <SetBufer>
 				PutData(bufer[br]);
- 320:	fe 01       	movw	r30, r28
- 322:	ee 0f       	add	r30, r30
- 324:	ff 1f       	adc	r31, r31
- 326:	ee 5d       	subi	r30, 0xDE	; 222
- 328:	fe 4f       	sbci	r31, 0xFE	; 254
- 32a:	80 81       	ld	r24, Z
- 32c:	91 81       	ldd	r25, Z+1	; 0x01
- 32e:	0e 94 62 01 	call	0x2c4	; 0x2c4 <PutData>
+ 32e:	fe 01       	movw	r30, r28
+ 330:	ee 0f       	add	r30, r30
+ 332:	ff 1f       	adc	r31, r31
+ 334:	ee 5d       	subi	r30, 0xDE	; 222
+ 336:	fe 4f       	sbci	r31, 0xFE	; 254
+ 338:	80 81       	ld	r24, Z
+ 33a:	91 81       	ldd	r25, Z+1	; 0x01
+ 33c:	0e 94 62 01 	call	0x2c4	; 0x2c4 <PutData>
 				TurnOnRow(br);
- 332:	8c 2f       	mov	r24, r28
- 334:	0e 94 54 01 	call	0x2a8	; 0x2a8 <TurnOnRow>
- 338:	21 96       	adiw	r28, 0x01	; 1
+ 340:	8c 2f       	mov	r24, r28
+ 342:	0e 94 54 01 	call	0x2a8	; 0x2a8 <TurnOnRow>
+ 346:	21 96       	adiw	r28, 0x01	; 1
 	DDRC |= (1 << 5);
 	clear();
 	
 	while(1)
 	{
 			for(uint8_t br = 0; br < 7; ++br)
- 33a:	c7 30       	cpi	r28, 0x07	; 7
- 33c:	d1 05       	cpc	r29, r1
- 33e:	71 f7       	brne	.-36     	; 0x31c <main+0x12>
- 340:	eb cf       	rjmp	.-42     	; 0x318 <main+0xe>
+ 348:	c7 30       	cpi	r28, 0x07	; 7
+ 34a:	d1 05       	cpc	r29, r1
+ 34c:	71 f7       	brne	.-36     	; 0x32a <main+0x12>
+ 34e:	eb cf       	rjmp	.-42     	; 0x326 <main+0xe>
 
-00000342 <_exit>:
- 342:	f8 94       	cli
+00000350 <_exit>:
+ 350:	f8 94       	cli
 
-00000344 <__stop_program>:
- 344:	ff cf       	rjmp	.-2      	; 0x344 <__stop_program>
+00000352 <__stop_program>:
+ 352:	ff cf       	rjmp	.-2      	; 0x352 <__stop_program>
