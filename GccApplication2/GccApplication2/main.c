@@ -22,6 +22,8 @@
 #define SERIN 5
 #define SRCK 5
 
+#define PLATE_NUM 3
+
 //number of movements
 volatile uint8_t shiftNum = 0;
 //this will turn on A B C and D
@@ -35,10 +37,10 @@ volatile uint8_t const numbers[][7] = {
 	{0b00001111, 0b00000001, 0b00000001, 0b00001111, 0b00001000, 0b00001000, 0b00001111 },//2
 };
 //what should be put in the register
-volatile uint16_t bufer[7] = {0};
+volatile uint16_t bufer[PLATE_NUM][7];
 
 //what will be written out
-char text[] = "012";
+char text[] = "01221201";
 
 //puts either 1 or 0 into the register 
 void Shift(uint8_t state)
@@ -54,9 +56,9 @@ void Shift(uint8_t state)
 }
 
 //clears the registers (shift 0, 16 times
-void clear()
+void Clear()
 {
-	for(uint8_t br = 0; br < 16; ++br)
+	for(uint8_t br = 0; br < (16 * PLATE_NUM); ++br)
 	{
 		Shift(0);
 	}
@@ -66,44 +68,42 @@ void clear()
 void SetBufer()
 {
 	//clear bufer
-	for(uint8_t br1 =  0; br1 < 7; ++br1)
+	for(uint8_t br = 0; br < PLATE_NUM; ++br)
 	{
-		bufer[br1] = 0;
+		for(uint8_t br1 =  0; br1 < 7; ++br1)
+		{
+			bufer[br][br1] = 0;
+		}
 	}
 	
 	uint16_t temp[7] = {0};
-	//go through all of the letters
-	for(uint8_t br = 0; br < strlen(text); ++br)
-	{
-		//if shiftNum - br * 5 - 5 is bigger than 16 the letters left the screen
-		if ((shiftNum - br * 5 - 5) < 16)
-		{
-			//if shiftNum - br * 5 is smaller than 0 the letters didnt yet come to screen(we can discard them, brake is for that)
-			if ((shiftNum - br * 5) < 0)
-			{
-				break;
-			}
 		
+	
+	
+	for(uint8_t br = 0; br < PLATE_NUM; ++br )
+	{
+		int8_t lastSign = (shiftNum - (16 * br)) / 5;
+		int8_t firstSign = lastSign - 3;
+		if(firstSign < 0 )
+		firstSign = 0;
+		if(lastSign > strlen(text) - 1 )
+		lastSign = strlen(text) - 1;
+		
+		for(uint8_t br1 = firstSign; br1 <= lastSign; ++br1 )
+		{
 			//set temp
-			for(uint8_t br1 = 0; br1 < 7; ++br1)
+			for(uint8_t br2 = 0; br2 < 7; ++br2 )
 			{
-				temp[br1] = numbers[text[br] - 48][br1];
+				temp[br2] = numbers[text[br1] - 48][br2];
 			}
-			
+
 			//set bufer
-			for (uint8_t br1 = 0; br1 < 7; ++br1)
+			for(uint8_t br2 = 0; br2 < 7; ++br2 )
 			{
-				//because  shifting with a negative is not defined in c there are two cases
-				if((shiftNum - 4 - br * 5) > 0)//for positiv
-				{
-					bufer[br1] |= (temp[br1] << (shiftNum - 4 - br * 5));
-				}
-				else // and negative
-					bufer[br1] |= (temp[br1] >> (shiftNum - 4 - br * 5) * (-1));
-				/*the letters in a bufer will be mooved either left or right(right if it's beig cut off) this mutch: shiftNum - 4 - br * 5 
-				/shift num is logical, 4 is so that we dont start with the first letter already on screen, br * 5 is the letter in the row times 5
-				/ 5 is used because a letter consists of 4 diods + 'space'
-				 */
+				if((shiftNum - 4 - (br * 16) - (br1 * 5) ) > 0 )
+				bufer[br][br2] |= temp[br2] << (shiftNum - 4 - (br * 16) - (br1 * 5) );
+				else
+				bufer[br][br2] |= temp[br2] >> ((shiftNum - 4 - (br * 16) - (br1 * 5)) *(-1) );
 			}
 		}
 	}
@@ -114,15 +114,17 @@ void SetBufer()
 void TurnOnRow(uint8_t row)
 {
 	PORTB &= allRows[ERASE];
+	PORTB |= (1 << RCK);
+	PORTB &= ~(1 << RCK);
 	PORTB |= allRows[row];
 }
 
-//sets up timer with a prescaler of 1024 (currently counts to 500 ms)
-void setupTimer()
+//sets up timer with a prescaler of 1024 (currently counts to 250 / 2 ms)
+void SetupTimer()
 {
 	TIMSK1 |= (1 << OCIE1A);
 	TCCR1B |= (1 << WGM12) | (1 << CS12) | (1 << CS10);
-	OCR1A = 5400;
+	OCR1A = 1350;
 	sei();
 }
 
@@ -137,30 +139,6 @@ void PutData(uint16_t data)
 		else
 		Shift(0);
 	}
-	PORTB |= (1 << RCK);
-	PORTB &= ~(1 << RCK);
-	
-	
-	//according to tutorial
-	/*PORTB &= ~(1 << RCK) & ~(1 << SERIN);
-	PORTC &= ~(1 << SRCK);
-	
-	for(uint8_t br = 0; br < 16; ++br)
-	{
-		PORTC &= ~(1 << SRCK);
-		
-		if(data & (1 << br))
-			PORTB |= (1 << SERIN);
-		else
-			PORTB &= ~(1 << SERIN);
-			
-		PORTC |= (1 << SRCK);
-		PORTB &= ~(1 << SERIN);
-	} 
-	
-	PORTB |= (1 << RCK);
-	PORTB &= ~(1 << SERIN);
-	PORTC &= ~(1 << SRCK);*/
 }
 
 
@@ -170,15 +148,18 @@ int main()
 	//setup
 	DDRB = 0xFF;
 	DDRC |= (1 << 5);
-	setupTimer();
-	clear();
+	SetupTimer();
+	Clear();
 	
 	while(1)
 	{
+		SetBufer();
 			for(uint8_t br = 0; br < 7; ++br)
 			{
-				SetBufer();
-				PutData(bufer[br]);
+				for(uint8_t br1 = 0; br1 < PLATE_NUM; ++br1)
+				{
+					PutData(bufer[br1][br]);
+				}
 				TurnOnRow(br);
 			}
 	}
@@ -188,7 +169,7 @@ int main()
 ISR(TIMER1_COMPA_vect)
 {
 	shiftNum++;
-	if (shiftNum > ((5 * strlen(text) ) + 16 ) )
+	if (shiftNum > ((5 * strlen(text) ) + (16 * PLATE_NUM) ) )
 	{
 		shiftNum = 0;
 	}
