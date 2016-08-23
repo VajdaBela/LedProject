@@ -3,31 +3,31 @@ GccApplication2.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000026  00800100  00000508  0000059c  2**0
+  0 .data         00000012  00800100  00000446  000004da  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000508  00000000  00000000  00000094  2**1
+  1 .text         00000446  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000002b  00800126  00800126  000005c2  2**0
+  2 .bss          0000000f  00800112  00800112  000004ec  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000005c2  2**0
+  3 .comment      00000030  00000000  00000000  000004ec  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000005f4  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000051c  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000058  00000000  00000000  00000630  2**0
+  5 .debug_aranges 00000058  00000000  00000000  00000558  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000003fc  00000000  00000000  00000688  2**0
+  6 .debug_info   000003f3  00000000  00000000  000005b0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000001ab  00000000  00000000  00000a84  2**0
+  7 .debug_abbrev 000001ba  00000000  00000000  000009a3  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000002d1  00000000  00000000  00000c2f  2**0
+  8 .debug_line   000002a5  00000000  00000000  00000b5d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000144  00000000  00000000  00000f00  2**2
+  9 .debug_frame  00000140  00000000  00000000  00000e04  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000001cd  00000000  00000000  00001044  2**0
+ 10 .debug_str    000001cd  00000000  00000000  00000f44  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000004d7  00000000  00000000  00001211  2**0
+ 11 .debug_loc    0000045b  00000000  00000000  00001111  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000d8  00000000  00000000  000016e8  2**0
+ 12 .debug_ranges 00000080  00000000  00000000  0000156c  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -44,7 +44,7 @@ Disassembly of section .text:
   20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  2c:	0c 94 27 02 	jmp	0x44e	; 0x44e <__vector_11>
+  2c:	0c 94 c6 01 	jmp	0x38c	; 0x38c <__vector_11>
   30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
@@ -72,18 +72,18 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e8 e0       	ldi	r30, 0x08	; 8
-  7c:	f5 e0       	ldi	r31, 0x05	; 5
+  7a:	e6 e4       	ldi	r30, 0x46	; 70
+  7c:	f4 e0       	ldi	r31, 0x04	; 4
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
   82:	0d 92       	st	X+, r0
-  84:	a6 32       	cpi	r26, 0x26	; 38
+  84:	a2 31       	cpi	r26, 0x12	; 18
   86:	b1 07       	cpc	r27, r17
   88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
 
 0000008a <__do_clear_bss>:
   8a:	21 e0       	ldi	r18, 0x01	; 1
-  8c:	a6 e2       	ldi	r26, 0x26	; 38
+  8c:	a2 e1       	ldi	r26, 0x12	; 18
   8e:	b1 e0       	ldi	r27, 0x01	; 1
   90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
 
@@ -91,17 +91,17 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	a1 35       	cpi	r26, 0x51	; 81
+  94:	a1 32       	cpi	r26, 0x21	; 33
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
-  9a:	0e 94 f7 01 	call	0x3ee	; 0x3ee <main>
-  9e:	0c 94 82 02 	jmp	0x504	; 0x504 <_exit>
+  9a:	0e 94 a8 01 	call	0x350	; 0x350 <main>
+  9e:	0c 94 21 02 	jmp	0x442	; 0x442 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 000000a6 <Shift>:
-char text[] = "01221201";
+char text[] = "0";
 
 //puts either 1 or 0 into the register 
 void Shift(uint8_t state)
@@ -130,7 +130,7 @@ void Shift(uint8_t state)
 void Clear()
 {
   b6:	cf 93       	push	r28
-  b8:	c0 e3       	ldi	r28, 0x30	; 48
+  b8:	c0 e1       	ldi	r28, 0x10	; 16
 	for(uint8_t br = 0; br < (16 * PLATE_NUM); ++br)
 	{
 		Shift(0);
@@ -156,763 +156,633 @@ void Clear()
 //buffer neads to be made (it'll consist only from what is on screen)
 void SetBufer()
 {
-  c8:	2f 92       	push	r2
-  ca:	3f 92       	push	r3
-  cc:	4f 92       	push	r4
-  ce:	5f 92       	push	r5
-  d0:	6f 92       	push	r6
-  d2:	7f 92       	push	r7
-  d4:	8f 92       	push	r8
-  d6:	9f 92       	push	r9
-  d8:	af 92       	push	r10
-  da:	bf 92       	push	r11
-  dc:	cf 92       	push	r12
-  de:	df 92       	push	r13
-  e0:	ef 92       	push	r14
-  e2:	ff 92       	push	r15
-  e4:	0f 93       	push	r16
-  e6:	1f 93       	push	r17
-  e8:	cf 93       	push	r28
-  ea:	df 93       	push	r29
-  ec:	cd b7       	in	r28, 0x3d	; 61
-  ee:	de b7       	in	r29, 0x3e	; 62
-  f0:	67 97       	sbiw	r28, 0x17	; 23
-  f2:	0f b6       	in	r0, 0x3f	; 63
-  f4:	f8 94       	cli
-  f6:	de bf       	out	0x3e, r29	; 62
-  f8:	0f be       	out	0x3f, r0	; 63
-  fa:	cd bf       	out	0x3d, r28	; 61
-  fc:	40 e0       	ldi	r20, 0x00	; 0
-  fe:	50 e0       	ldi	r21, 0x00	; 0
- 100:	70 e0       	ldi	r23, 0x00	; 0
- 102:	60 e0       	ldi	r22, 0x00	; 0
- 104:	12 c0       	rjmp	.+36     	; 0x12a <SetBufer+0x62>
+  c8:	3f 92       	push	r3
+  ca:	4f 92       	push	r4
+  cc:	5f 92       	push	r5
+  ce:	6f 92       	push	r6
+  d0:	7f 92       	push	r7
+  d2:	8f 92       	push	r8
+  d4:	9f 92       	push	r9
+  d6:	af 92       	push	r10
+  d8:	bf 92       	push	r11
+  da:	cf 92       	push	r12
+  dc:	df 92       	push	r13
+  de:	ef 92       	push	r14
+  e0:	ff 92       	push	r15
+  e2:	0f 93       	push	r16
+  e4:	1f 93       	push	r17
+  e6:	cf 93       	push	r28
+  e8:	df 93       	push	r29
+  ea:	cd b7       	in	r28, 0x3d	; 61
+  ec:	de b7       	in	r29, 0x3e	; 62
+  ee:	2e 97       	sbiw	r28, 0x0e	; 14
+  f0:	0f b6       	in	r0, 0x3f	; 63
+  f2:	f8 94       	cli
+  f4:	de bf       	out	0x3e, r29	; 62
+  f6:	0f be       	out	0x3f, r0	; 63
+  f8:	cd bf       	out	0x3d, r28	; 61
+  fa:	80 e0       	ldi	r24, 0x00	; 0
+  fc:	90 e0       	ldi	r25, 0x00	; 0
 	//clear bufer
 	for(uint8_t br = 0; br < PLATE_NUM; ++br)
 	{
 		for(uint8_t br1 =  0; br1 < 7; ++br1)
 		{
 			bufer[br][br1] = 0;
- 106:	f9 01       	movw	r30, r18
- 108:	e8 0f       	add	r30, r24
- 10a:	f9 1f       	adc	r31, r25
- 10c:	ee 0f       	add	r30, r30
- 10e:	ff 1f       	adc	r31, r31
- 110:	e9 5d       	subi	r30, 0xD9	; 217
- 112:	fe 4f       	sbci	r31, 0xFE	; 254
- 114:	11 82       	std	Z+1, r1	; 0x01
- 116:	10 82       	st	Z, r1
- 118:	01 96       	adiw	r24, 0x01	; 1
+  fe:	fc 01       	movw	r30, r24
+ 100:	ee 0f       	add	r30, r30
+ 102:	ff 1f       	adc	r31, r31
+ 104:	ed 5e       	subi	r30, 0xED	; 237
+ 106:	fe 4f       	sbci	r31, 0xFE	; 254
+ 108:	11 82       	std	Z+1, r1	; 0x01
+ 10a:	10 82       	st	Z, r1
+ 10c:	01 96       	adiw	r24, 0x01	; 1
 void SetBufer()
 {
 	//clear bufer
 	for(uint8_t br = 0; br < PLATE_NUM; ++br)
 	{
 		for(uint8_t br1 =  0; br1 < 7; ++br1)
- 11a:	87 30       	cpi	r24, 0x07	; 7
- 11c:	91 05       	cpc	r25, r1
- 11e:	99 f7       	brne	.-26     	; 0x106 <SetBufer+0x3e>
- 120:	4f 5f       	subi	r20, 0xFF	; 255
- 122:	5f 4f       	sbci	r21, 0xFF	; 255
-
-//buffer neads to be made (it'll consist only from what is on screen)
-void SetBufer()
-{
-	//clear bufer
-	for(uint8_t br = 0; br < PLATE_NUM; ++br)
- 124:	43 30       	cpi	r20, 0x03	; 3
- 126:	51 05       	cpc	r21, r1
- 128:	61 f0       	breq	.+24     	; 0x142 <SetBufer+0x7a>
-	}
-}
-
-//buffer neads to be made (it'll consist only from what is on screen)
-void SetBufer()
-{
- 12a:	87 2f       	mov	r24, r23
- 12c:	96 2f       	mov	r25, r22
-	//clear bufer
-	for(uint8_t br = 0; br < PLATE_NUM; ++br)
-	{
-		for(uint8_t br1 =  0; br1 < 7; ++br1)
+ 10e:	87 30       	cpi	r24, 0x07	; 7
+ 110:	91 05       	cpc	r25, r1
+ 112:	a9 f7       	brne	.-22     	; 0xfe <SetBufer+0x36>
 		{
 			bufer[br][br1] = 0;
- 12e:	9a 01       	movw	r18, r20
- 130:	22 0f       	add	r18, r18
- 132:	33 1f       	adc	r19, r19
- 134:	22 0f       	add	r18, r18
- 136:	33 1f       	adc	r19, r19
- 138:	22 0f       	add	r18, r18
- 13a:	33 1f       	adc	r19, r19
- 13c:	24 1b       	sub	r18, r20
- 13e:	35 0b       	sbc	r19, r21
- 140:	e2 cf       	rjmp	.-60     	; 0x106 <SetBufer+0x3e>
 		}
 	}
 	
 	uint16_t temp[7] = {0};
- 142:	fe 01       	movw	r30, r28
- 144:	31 96       	adiw	r30, 0x01	; 1
- 146:	8e e0       	ldi	r24, 0x0E	; 14
- 148:	df 01       	movw	r26, r30
- 14a:	1d 92       	st	X+, r1
- 14c:	8a 95       	dec	r24
- 14e:	e9 f7       	brne	.-6      	; 0x14a <SetBufer+0x82>
- 150:	1c 8a       	std	Y+20, r1	; 0x14
- 152:	1b 8a       	std	Y+19, r1	; 0x13
- 154:	1e 8a       	std	Y+22, r1	; 0x16
- 156:	1d 8a       	std	Y+21, r1	; 0x15
-		for(uint8_t br1 = firstSign; br1 <= lastSign; ++br1 )
-		{
-			//set temp
-			for(uint8_t br2 = 0; br2 < 7; ++br2 )
-			{
-				temp[br2] = numbers[text[br1] - 48][br2];
- 158:	f8 8b       	std	Y+16, r31	; 0x10
- 15a:	ef 87       	std	Y+15, r30	; 0x0f
-			for(uint8_t br2 = 0; br2 < 7; ++br2 )
-			{
-				if((shiftNum - 4 - (br * 16) - (br1 * 5) ) > 0 )
-				bufer[br][br2] |= temp[br2] << (shiftNum - 4 - (br * 16) - (br1 * 5) );
-				else
-				bufer[br][br2] |= temp[br2] >> ((shiftNum - 4 - (br * 16) - (br1 * 5)) *(-1) );
- 15c:	68 94       	set
- 15e:	22 24       	eor	r2, r2
- 160:	22 f8       	bld	r2, 2
- 162:	31 2c       	mov	r3, r1
-		for(uint8_t br1 = firstSign; br1 <= lastSign; ++br1 )
-		{
-			//set temp
-			for(uint8_t br2 = 0; br2 < 7; ++br2 )
-			{
-				temp[br2] = numbers[text[br1] - 48][br2];
- 164:	6f 84       	ldd	r6, Y+15	; 0x0f
- 166:	69 8a       	std	Y+17, r6	; 0x11
- 168:	78 88       	ldd	r7, Y+16	; 0x10
- 16a:	7a 8a       	std	Y+18, r7	; 0x12
+ 114:	fe 01       	movw	r30, r28
+ 116:	31 96       	adiw	r30, 0x01	; 1
+ 118:	8e e0       	ldi	r24, 0x0E	; 14
+ 11a:	df 01       	movw	r26, r30
+ 11c:	1d 92       	st	X+, r1
+ 11e:	8a 95       	dec	r24
+ 120:	e9 f7       	brne	.-6      	; 0x11c <SetBufer+0x54>
 		
 	
 	
 	for(uint8_t br = 0; br < PLATE_NUM; ++br )
 	{
-		int8_t lastSign = (shiftNum - (16 * br)) / 5;
- 16c:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
- 170:	2d 89       	ldd	r18, Y+21	; 0x15
- 172:	3e 89       	ldd	r19, Y+22	; 0x16
- 174:	0b 89       	ldd	r16, Y+19	; 0x13
- 176:	1c 89       	ldd	r17, Y+20	; 0x14
- 178:	78 01       	movw	r14, r16
- 17a:	e8 0e       	add	r14, r24
- 17c:	f1 1c       	adc	r15, r1
- 17e:	c7 01       	movw	r24, r14
- 180:	65 e0       	ldi	r22, 0x05	; 5
- 182:	70 e0       	ldi	r23, 0x00	; 0
- 184:	0e 94 5a 02 	call	0x4b4	; 0x4b4 <__divmodhi4>
- 188:	46 2e       	mov	r4, r22
+		int8_t lastSign = (shiftNum - (16 * br)) / 6;
+ 122:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <__data_end>
+ 126:	90 e0       	ldi	r25, 0x00	; 0
+ 128:	66 e0       	ldi	r22, 0x06	; 6
+ 12a:	70 e0       	ldi	r23, 0x00	; 0
+ 12c:	0e 94 f9 01 	call	0x3f2	; 0x3f2 <__divmodhi4>
+ 130:	86 2e       	mov	r8, r22
 		int8_t firstSign = lastSign - 3;
- 18a:	4d ef       	ldi	r20, 0xFD	; 253
- 18c:	46 0f       	add	r20, r22
- 18e:	0a f4       	brpl	.+2      	; 0x192 <SetBufer+0xca>
- 190:	40 e0       	ldi	r20, 0x00	; 0
+ 132:	4d ef       	ldi	r20, 0xFD	; 253
+ 134:	46 0f       	add	r20, r22
+ 136:	0a f4       	brpl	.+2      	; 0x13a <SetBufer+0x72>
+ 138:	40 e0       	ldi	r20, 0x00	; 0
 		if(firstSign < 0 )
 		firstSign = 0;
 		if(lastSign > strlen(text) - 1 )
- 192:	e0 e0       	ldi	r30, 0x00	; 0
- 194:	f1 e0       	ldi	r31, 0x01	; 1
- 196:	01 90       	ld	r0, Z+
- 198:	00 20       	and	r0, r0
- 19a:	e9 f7       	brne	.-6      	; 0x196 <SetBufer+0xce>
- 19c:	31 97       	sbiw	r30, 0x01	; 1
- 19e:	cf 01       	movw	r24, r30
- 1a0:	80 50       	subi	r24, 0x00	; 0
- 1a2:	91 40       	sbci	r25, 0x01	; 1
- 1a4:	06 2e       	mov	r0, r22
- 1a6:	00 0c       	add	r0, r0
- 1a8:	77 0b       	sbc	r23, r23
- 1aa:	fc 01       	movw	r30, r24
- 1ac:	31 97       	sbiw	r30, 0x01	; 1
- 1ae:	e6 17       	cp	r30, r22
- 1b0:	f7 07       	cpc	r31, r23
- 1b2:	18 f4       	brcc	.+6      	; 0x1ba <SetBufer+0xf2>
+ 13a:	e0 e0       	ldi	r30, 0x00	; 0
+ 13c:	f1 e0       	ldi	r31, 0x01	; 1
+ 13e:	01 90       	ld	r0, Z+
+ 140:	00 20       	and	r0, r0
+ 142:	e9 f7       	brne	.-6      	; 0x13e <SetBufer+0x76>
+ 144:	31 97       	sbiw	r30, 0x01	; 1
+ 146:	e0 50       	subi	r30, 0x00	; 0
+ 148:	f1 40       	sbci	r31, 0x01	; 1
+ 14a:	06 2e       	mov	r0, r22
+ 14c:	00 0c       	add	r0, r0
+ 14e:	77 0b       	sbc	r23, r23
+ 150:	cf 01       	movw	r24, r30
+ 152:	01 97       	sbiw	r24, 0x01	; 1
+ 154:	86 17       	cp	r24, r22
+ 156:	97 07       	cpc	r25, r23
+ 158:	18 f4       	brcc	.+6      	; 0x160 <SetBufer+0x98>
 		lastSign = strlen(text) - 1;
- 1b4:	44 24       	eor	r4, r4
- 1b6:	4a 94       	dec	r4
- 1b8:	48 0e       	add	r4, r24
+ 15a:	88 24       	eor	r8, r8
+ 15c:	8a 94       	dec	r8
+ 15e:	8e 0e       	add	r8, r30
 		
 		for(uint8_t br1 = firstSign; br1 <= lastSign; ++br1 )
- 1ba:	74 2e       	mov	r7, r20
- 1bc:	50 e0       	ldi	r21, 0x00	; 0
- 1be:	04 2c       	mov	r0, r4
- 1c0:	00 0c       	add	r0, r0
- 1c2:	55 08       	sbc	r5, r5
- 1c4:	44 16       	cp	r4, r20
- 1c6:	55 06       	cpc	r5, r21
- 1c8:	0c f4       	brge	.+2      	; 0x1cc <SetBufer+0x104>
- 1ca:	9e c0       	rjmp	.+316    	; 0x308 <SetBufer+0x240>
- 1cc:	8b 88       	ldd	r8, Y+19	; 0x13
- 1ce:	9c 88       	ldd	r9, Y+20	; 0x14
- 1d0:	91 94       	neg	r9
- 1d2:	81 94       	neg	r8
- 1d4:	91 08       	sbc	r9, r1
-			for(uint8_t br2 = 0; br2 < 7; ++br2 )
-			{
-				if((shiftNum - 4 - (br * 16) - (br1 * 5) ) > 0 )
-				bufer[br][br2] |= temp[br2] << (shiftNum - 4 - (br * 16) - (br1 * 5) );
-				else
-				bufer[br][br2] |= temp[br2] >> ((shiftNum - 4 - (br * 16) - (br1 * 5)) *(-1) );
- 1d6:	59 01       	movw	r10, r18
- 1d8:	aa 0c       	add	r10, r10
- 1da:	bb 1c       	adc	r11, r11
- 1dc:	aa 0c       	add	r10, r10
- 1de:	bb 1c       	adc	r11, r11
- 1e0:	aa 0c       	add	r10, r10
- 1e2:	bb 1c       	adc	r11, r11
- 1e4:	a2 1a       	sub	r10, r18
- 1e6:	b3 0a       	sbc	r11, r19
- 1e8:	77 c0       	rjmp	.+238    	; 0x2d8 <SetBufer+0x210>
-		for(uint8_t br1 = firstSign; br1 <= lastSign; ++br1 )
+ 160:	b4 2e       	mov	r11, r20
+ 162:	50 e0       	ldi	r21, 0x00	; 0
+ 164:	08 2c       	mov	r0, r8
+ 166:	00 0c       	add	r0, r0
+ 168:	99 08       	sbc	r9, r9
+ 16a:	84 16       	cp	r8, r20
+ 16c:	95 06       	cpc	r9, r21
+ 16e:	0c f0       	brlt	.+2      	; 0x172 <SetBufer+0xaa>
+ 170:	6b c0       	rjmp	.+214    	; 0x248 <SetBufer+0x180>
+ 172:	8c c0       	rjmp	.+280    	; 0x28c <SetBufer+0x1c4>
 		{
 			//set temp
 			for(uint8_t br2 = 0; br2 < 7; ++br2 )
 			{
 				temp[br2] = numbers[text[br1] - 48][br2];
- 1ea:	9b 01       	movw	r18, r22
- 1ec:	28 0f       	add	r18, r24
- 1ee:	39 1f       	adc	r19, r25
- 1f0:	d9 01       	movw	r26, r18
- 1f2:	a7 5f       	subi	r26, 0xF7	; 247
- 1f4:	be 4f       	sbci	r27, 0xFE	; 254
- 1f6:	2c 91       	ld	r18, X
- 1f8:	30 e0       	ldi	r19, 0x00	; 0
- 1fa:	21 93       	st	Z+, r18
- 1fc:	31 93       	st	Z+, r19
- 1fe:	01 96       	adiw	r24, 0x01	; 1
+ 174:	9b 01       	movw	r18, r22
+ 176:	28 0f       	add	r18, r24
+ 178:	39 1f       	adc	r19, r25
+ 17a:	2e 5f       	subi	r18, 0xFE	; 254
+ 17c:	3e 4f       	sbci	r19, 0xFE	; 254
+ 17e:	f9 01       	movw	r30, r18
+ 180:	20 81       	ld	r18, Z
+ 182:	30 e0       	ldi	r19, 0x00	; 0
+ 184:	f8 01       	movw	r30, r16
+ 186:	21 93       	st	Z+, r18
+ 188:	31 93       	st	Z+, r19
+ 18a:	8f 01       	movw	r16, r30
+ 18c:	01 96       	adiw	r24, 0x01	; 1
 		lastSign = strlen(text) - 1;
 		
 		for(uint8_t br1 = firstSign; br1 <= lastSign; ++br1 )
 		{
 			//set temp
 			for(uint8_t br2 = 0; br2 < 7; ++br2 )
- 200:	87 30       	cpi	r24, 0x07	; 7
- 202:	91 05       	cpc	r25, r1
- 204:	91 f7       	brne	.-28     	; 0x1ea <SetBufer+0x122>
- 206:	d7 01       	movw	r26, r14
+ 18e:	87 30       	cpi	r24, 0x07	; 7
+ 190:	91 05       	cpc	r25, r1
+ 192:	81 f7       	brne	.-32     	; 0x174 <SetBufer+0xac>
 			}
 
 			//set bufer
 			for(uint8_t br2 = 0; br2 < 7; ++br2 )
 			{
-				if((shiftNum - 4 - (br * 16) - (br1 * 5) ) > 0 )
- 208:	2b ef       	ldi	r18, 0xFB	; 251
- 20a:	24 03       	mulsu	r18, r20
- 20c:	b0 01       	movw	r22, r0
- 20e:	25 9f       	mul	r18, r21
- 210:	70 0d       	add	r23, r0
- 212:	11 24       	eor	r1, r1
-				bufer[br][br2] |= temp[br2] << (shiftNum - 4 - (br * 16) - (br1 * 5) );
+				if((shiftNum - 5 - (br * 16) - (br1 * 6) ) > 0 )
+ 194:	2a ef       	ldi	r18, 0xFA	; 250
+ 196:	24 03       	mulsu	r18, r20
+ 198:	80 01       	movw	r16, r0
+ 19a:	25 9f       	mul	r18, r21
+ 19c:	10 0d       	add	r17, r0
+ 19e:	11 24       	eor	r1, r1
+				bufer[br][br2] |= temp[br2] << (shiftNum - 5 - (br * 16) - (br1 * 6) );
 				else
-				bufer[br][br2] |= temp[br2] >> ((shiftNum - 4 - (br * 16) - (br1 * 5)) *(-1) );
- 214:	6a 01       	movw	r12, r20
- 216:	cc 0c       	add	r12, r12
- 218:	dd 1c       	adc	r13, r13
- 21a:	cc 0c       	add	r12, r12
- 21c:	dd 1c       	adc	r13, r13
- 21e:	c4 0e       	add	r12, r20
- 220:	d5 1e       	adc	r13, r21
- 222:	40 e0       	ldi	r20, 0x00	; 0
- 224:	50 e0       	ldi	r21, 0x00	; 0
- 226:	7f 8a       	std	Y+23, r7	; 0x17
+				bufer[br][br2] |= temp[br2] >> ((shiftNum - 5 - (br * 16) - (br1 * 6)) *(-1) );
+ 1a0:	7a 01       	movw	r14, r20
+ 1a2:	ee 0c       	add	r14, r14
+ 1a4:	ff 1c       	adc	r15, r15
+ 1a6:	e4 0e       	add	r14, r20
+ 1a8:	f5 1e       	adc	r15, r21
+ 1aa:	ee 0c       	add	r14, r14
+ 1ac:	ff 1c       	adc	r15, r15
+ 1ae:	2a 2d       	mov	r18, r10
+ 1b0:	37 2d       	mov	r19, r7
 			}
 
 			//set bufer
 			for(uint8_t br2 = 0; br2 < 7; ++br2 )
 			{
-				if((shiftNum - 4 - (br * 16) - (br1 * 5) ) > 0 )
- 228:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
- 22c:	90 e0       	ldi	r25, 0x00	; 0
- 22e:	04 97       	sbiw	r24, 0x04	; 4
- 230:	80 0f       	add	r24, r16
- 232:	91 1f       	adc	r25, r17
- 234:	86 0f       	add	r24, r22
- 236:	97 1f       	adc	r25, r23
- 238:	18 16       	cp	r1, r24
- 23a:	19 06       	cpc	r1, r25
- 23c:	fc f4       	brge	.+62     	; 0x27c <SetBufer+0x1b4>
-				bufer[br][br2] |= temp[br2] << (shiftNum - 4 - (br * 16) - (br1 * 5) );
- 23e:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
- 242:	f5 01       	movw	r30, r10
- 244:	e4 0f       	add	r30, r20
- 246:	f5 1f       	adc	r31, r21
- 248:	ee 0f       	add	r30, r30
- 24a:	ff 1f       	adc	r31, r31
- 24c:	e9 5d       	subi	r30, 0xD9	; 217
- 24e:	fe 4f       	sbci	r31, 0xFE	; 254
- 250:	20 81       	ld	r18, Z
- 252:	31 81       	ldd	r19, Z+1	; 0x01
- 254:	90 e0       	ldi	r25, 0x00	; 0
- 256:	04 97       	sbiw	r24, 0x04	; 4
- 258:	80 0f       	add	r24, r16
- 25a:	91 1f       	adc	r25, r17
- 25c:	86 0f       	add	r24, r22
- 25e:	97 1f       	adc	r25, r23
- 260:	ed 90       	ld	r14, X+
- 262:	fc 90       	ld	r15, X
- 264:	11 97       	sbiw	r26, 0x01	; 1
- 266:	37 01       	movw	r6, r14
- 268:	02 c0       	rjmp	.+4      	; 0x26e <SetBufer+0x1a6>
- 26a:	66 0c       	add	r6, r6
- 26c:	77 1c       	adc	r7, r7
- 26e:	8a 95       	dec	r24
- 270:	e2 f7       	brpl	.-8      	; 0x26a <SetBufer+0x1a2>
- 272:	26 29       	or	r18, r6
- 274:	37 29       	or	r19, r7
- 276:	31 83       	std	Z+1, r19	; 0x01
- 278:	20 83       	st	Z, r18
- 27a:	20 c0       	rjmp	.+64     	; 0x2bc <SetBufer+0x1f4>
+				if((shiftNum - 5 - (br * 16) - (br1 * 6) ) > 0 )
+ 1b2:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <__data_end>
+ 1b6:	90 e0       	ldi	r25, 0x00	; 0
+ 1b8:	05 97       	sbiw	r24, 0x05	; 5
+ 1ba:	80 0f       	add	r24, r16
+ 1bc:	91 1f       	adc	r25, r17
+ 1be:	18 16       	cp	r1, r24
+ 1c0:	19 06       	cpc	r1, r25
+ 1c2:	d4 f4       	brge	.+52     	; 0x1f8 <SetBufer+0x130>
+				bufer[br][br2] |= temp[br2] << (shiftNum - 5 - (br * 16) - (br1 * 6) );
+ 1c4:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <__data_end>
+ 1c8:	f9 01       	movw	r30, r18
+ 1ca:	ee 0f       	add	r30, r30
+ 1cc:	ff 1f       	adc	r31, r31
+ 1ce:	ed 5e       	subi	r30, 0xED	; 237
+ 1d0:	fe 4f       	sbci	r31, 0xFE	; 254
+ 1d2:	40 81       	ld	r20, Z
+ 1d4:	51 81       	ldd	r21, Z+1	; 0x01
+ 1d6:	90 e0       	ldi	r25, 0x00	; 0
+ 1d8:	05 97       	sbiw	r24, 0x05	; 5
+ 1da:	80 0f       	add	r24, r16
+ 1dc:	91 1f       	adc	r25, r17
+ 1de:	6d 91       	ld	r22, X+
+ 1e0:	7c 91       	ld	r23, X
+ 1e2:	11 97       	sbiw	r26, 0x01	; 1
+ 1e4:	02 c0       	rjmp	.+4      	; 0x1ea <SetBufer+0x122>
+ 1e6:	66 0f       	add	r22, r22
+ 1e8:	77 1f       	adc	r23, r23
+ 1ea:	8a 95       	dec	r24
+ 1ec:	e2 f7       	brpl	.-8      	; 0x1e6 <SetBufer+0x11e>
+ 1ee:	64 2b       	or	r22, r20
+ 1f0:	75 2b       	or	r23, r21
+ 1f2:	71 83       	std	Z+1, r23	; 0x01
+ 1f4:	60 83       	st	Z, r22
+ 1f6:	1a c0       	rjmp	.+52     	; 0x22c <SetBufer+0x164>
 				else
-				bufer[br][br2] |= temp[br2] >> ((shiftNum - 4 - (br * 16) - (br1 * 5)) *(-1) );
- 27c:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
- 280:	f5 01       	movw	r30, r10
- 282:	e4 0f       	add	r30, r20
- 284:	f5 1f       	adc	r31, r21
- 286:	ee 0f       	add	r30, r30
- 288:	ff 1f       	adc	r31, r31
- 28a:	e9 5d       	subi	r30, 0xD9	; 217
- 28c:	fe 4f       	sbci	r31, 0xFE	; 254
- 28e:	20 81       	ld	r18, Z
- 290:	31 81       	ldd	r19, Z+1	; 0x01
- 292:	71 01       	movw	r14, r2
- 294:	e8 1a       	sub	r14, r24
- 296:	f1 08       	sbc	r15, r1
- 298:	c7 01       	movw	r24, r14
- 29a:	88 0d       	add	r24, r8
- 29c:	99 1d       	adc	r25, r9
- 29e:	8c 0d       	add	r24, r12
- 2a0:	9d 1d       	adc	r25, r13
- 2a2:	ed 90       	ld	r14, X+
- 2a4:	fc 90       	ld	r15, X
- 2a6:	11 97       	sbiw	r26, 0x01	; 1
- 2a8:	37 01       	movw	r6, r14
- 2aa:	02 c0       	rjmp	.+4      	; 0x2b0 <SetBufer+0x1e8>
- 2ac:	76 94       	lsr	r7
- 2ae:	67 94       	ror	r6
- 2b0:	8a 95       	dec	r24
- 2b2:	e2 f7       	brpl	.-8      	; 0x2ac <SetBufer+0x1e4>
- 2b4:	26 29       	or	r18, r6
- 2b6:	37 29       	or	r19, r7
- 2b8:	31 83       	std	Z+1, r19	; 0x01
- 2ba:	20 83       	st	Z, r18
- 2bc:	4f 5f       	subi	r20, 0xFF	; 255
- 2be:	5f 4f       	sbci	r21, 0xFF	; 255
- 2c0:	12 96       	adiw	r26, 0x02	; 2
+				bufer[br][br2] |= temp[br2] >> ((shiftNum - 5 - (br * 16) - (br1 * 6)) *(-1) );
+ 1f8:	40 91 12 01 	lds	r20, 0x0112	; 0x800112 <__data_end>
+ 1fc:	f9 01       	movw	r30, r18
+ 1fe:	ee 0f       	add	r30, r30
+ 200:	ff 1f       	adc	r31, r31
+ 202:	ed 5e       	subi	r30, 0xED	; 237
+ 204:	fe 4f       	sbci	r31, 0xFE	; 254
+ 206:	80 81       	ld	r24, Z
+ 208:	91 81       	ldd	r25, Z+1	; 0x01
+ 20a:	b6 01       	movw	r22, r12
+ 20c:	64 1b       	sub	r22, r20
+ 20e:	71 09       	sbc	r23, r1
+ 210:	6e 0d       	add	r22, r14
+ 212:	7f 1d       	adc	r23, r15
+ 214:	4d 91       	ld	r20, X+
+ 216:	5c 91       	ld	r21, X
+ 218:	11 97       	sbiw	r26, 0x01	; 1
+ 21a:	02 c0       	rjmp	.+4      	; 0x220 <SetBufer+0x158>
+ 21c:	56 95       	lsr	r21
+ 21e:	47 95       	ror	r20
+ 220:	6a 95       	dec	r22
+ 222:	e2 f7       	brpl	.-8      	; 0x21c <SetBufer+0x154>
+ 224:	48 2b       	or	r20, r24
+ 226:	59 2b       	or	r21, r25
+ 228:	51 83       	std	Z+1, r21	; 0x01
+ 22a:	40 83       	st	Z, r20
+ 22c:	2f 5f       	subi	r18, 0xFF	; 255
+ 22e:	3f 4f       	sbci	r19, 0xFF	; 255
+ 230:	12 96       	adiw	r26, 0x02	; 2
 			{
 				temp[br2] = numbers[text[br1] - 48][br2];
 			}
 
 			//set bufer
 			for(uint8_t br2 = 0; br2 < 7; ++br2 )
- 2c2:	47 30       	cpi	r20, 0x07	; 7
- 2c4:	51 05       	cpc	r21, r1
- 2c6:	09 f0       	breq	.+2      	; 0x2ca <SetBufer+0x202>
- 2c8:	af cf       	rjmp	.-162    	; 0x228 <SetBufer+0x160>
- 2ca:	7f 88       	ldd	r7, Y+23	; 0x17
+ 232:	27 30       	cpi	r18, 0x07	; 7
+ 234:	31 05       	cpc	r19, r1
+ 236:	09 f0       	breq	.+2      	; 0x23a <SetBufer+0x172>
+ 238:	bc cf       	rjmp	.-136    	; 0x1b2 <SetBufer+0xea>
 		if(firstSign < 0 )
 		firstSign = 0;
 		if(lastSign > strlen(text) - 1 )
 		lastSign = strlen(text) - 1;
 		
 		for(uint8_t br1 = firstSign; br1 <= lastSign; ++br1 )
- 2cc:	73 94       	inc	r7
- 2ce:	47 2d       	mov	r20, r7
- 2d0:	50 e0       	ldi	r21, 0x00	; 0
- 2d2:	44 16       	cp	r4, r20
- 2d4:	55 06       	cpc	r5, r21
- 2d6:	c4 f0       	brlt	.+48     	; 0x308 <SetBufer+0x240>
+ 23a:	b3 94       	inc	r11
+ 23c:	4b 2d       	mov	r20, r11
+ 23e:	50 e0       	ldi	r21, 0x00	; 0
+ 240:	84 16       	cp	r8, r20
+ 242:	95 06       	cpc	r9, r21
+ 244:	6c f4       	brge	.+26     	; 0x260 <SetBufer+0x198>
+ 246:	22 c0       	rjmp	.+68     	; 0x28c <SetBufer+0x1c4>
+ 248:	ce 01       	movw	r24, r28
+ 24a:	01 96       	adiw	r24, 0x01	; 1
+ 24c:	2c 01       	movw	r4, r24
 		{
 			//set temp
 			for(uint8_t br2 = 0; br2 < 7; ++br2 )
 			{
 				temp[br2] = numbers[text[br1] - 48][br2];
- 2d8:	fa 01       	movw	r30, r20
- 2da:	e0 50       	subi	r30, 0x00	; 0
- 2dc:	ff 4f       	sbci	r31, 0xFF	; 255
- 2de:	20 81       	ld	r18, Z
- 2e0:	30 e0       	ldi	r19, 0x00	; 0
- 2e2:	20 53       	subi	r18, 0x30	; 48
- 2e4:	31 09       	sbc	r19, r1
- 2e6:	de 01       	movw	r26, r28
- 2e8:	11 96       	adiw	r26, 0x01	; 1
- 2ea:	e9 89       	ldd	r30, Y+17	; 0x11
- 2ec:	fa 89       	ldd	r31, Y+18	; 0x12
- 2ee:	80 e0       	ldi	r24, 0x00	; 0
- 2f0:	90 e0       	ldi	r25, 0x00	; 0
- 2f2:	b9 01       	movw	r22, r18
- 2f4:	66 0f       	add	r22, r22
- 2f6:	77 1f       	adc	r23, r23
- 2f8:	66 0f       	add	r22, r22
- 2fa:	77 1f       	adc	r23, r23
- 2fc:	66 0f       	add	r22, r22
- 2fe:	77 1f       	adc	r23, r23
- 300:	62 1b       	sub	r22, r18
- 302:	73 0b       	sbc	r23, r19
- 304:	7d 01       	movw	r14, r26
- 306:	71 cf       	rjmp	.-286    	; 0x1ea <SetBufer+0x122>
- 308:	4d 89       	ldd	r20, Y+21	; 0x15
- 30a:	5e 89       	ldd	r21, Y+22	; 0x16
- 30c:	4f 5f       	subi	r20, 0xFF	; 255
- 30e:	5f 4f       	sbci	r21, 0xFF	; 255
- 310:	5e 8b       	std	Y+22, r21	; 0x16
- 312:	4d 8b       	std	Y+21, r20	; 0x15
- 314:	4b 89       	ldd	r20, Y+19	; 0x13
- 316:	5c 89       	ldd	r21, Y+20	; 0x14
- 318:	40 51       	subi	r20, 0x10	; 16
- 31a:	51 09       	sbc	r21, r1
- 31c:	5c 8b       	std	Y+20, r21	; 0x14
- 31e:	4b 8b       	std	Y+19, r20	; 0x13
-	
-	uint16_t temp[7] = {0};
-		
-	
-	
-	for(uint8_t br = 0; br < PLATE_NUM; ++br )
- 320:	40 3d       	cpi	r20, 0xD0	; 208
- 322:	5f 4f       	sbci	r21, 0xFF	; 255
- 324:	09 f0       	breq	.+2      	; 0x328 <SetBufer+0x260>
- 326:	22 cf       	rjmp	.-444    	; 0x16c <SetBufer+0xa4>
+ 24e:	68 2e       	mov	r6, r24
+ 250:	35 2c       	mov	r3, r5
+ 252:	a1 2c       	mov	r10, r1
+ 254:	71 2c       	mov	r7, r1
+			for(uint8_t br2 = 0; br2 < 7; ++br2 )
+			{
+				if((shiftNum - 5 - (br * 16) - (br1 * 6) ) > 0 )
+				bufer[br][br2] |= temp[br2] << (shiftNum - 5 - (br * 16) - (br1 * 6) );
 				else
-				bufer[br][br2] |= temp[br2] >> ((shiftNum - 4 - (br * 16) - (br1 * 5)) *(-1) );
+				bufer[br][br2] |= temp[br2] >> ((shiftNum - 5 - (br * 16) - (br1 * 6)) *(-1) );
+ 256:	0f 2e       	mov	r0, r31
+ 258:	f5 e0       	ldi	r31, 0x05	; 5
+ 25a:	cf 2e       	mov	r12, r31
+ 25c:	d1 2c       	mov	r13, r1
+ 25e:	f0 2d       	mov	r31, r0
+		for(uint8_t br1 = firstSign; br1 <= lastSign; ++br1 )
+		{
+			//set temp
+			for(uint8_t br2 = 0; br2 < 7; ++br2 )
+			{
+				temp[br2] = numbers[text[br1] - 48][br2];
+ 260:	fa 01       	movw	r30, r20
+ 262:	e0 50       	subi	r30, 0x00	; 0
+ 264:	ff 4f       	sbci	r31, 0xFF	; 255
+ 266:	20 81       	ld	r18, Z
+ 268:	30 e0       	ldi	r19, 0x00	; 0
+ 26a:	20 53       	subi	r18, 0x30	; 48
+ 26c:	31 09       	sbc	r19, r1
+ 26e:	d2 01       	movw	r26, r4
+ 270:	06 2d       	mov	r16, r6
+ 272:	13 2d       	mov	r17, r3
+ 274:	8a 2d       	mov	r24, r10
+ 276:	97 2d       	mov	r25, r7
+ 278:	b9 01       	movw	r22, r18
+ 27a:	66 0f       	add	r22, r22
+ 27c:	77 1f       	adc	r23, r23
+ 27e:	66 0f       	add	r22, r22
+ 280:	77 1f       	adc	r23, r23
+ 282:	66 0f       	add	r22, r22
+ 284:	77 1f       	adc	r23, r23
+ 286:	62 1b       	sub	r22, r18
+ 288:	73 0b       	sbc	r23, r19
+ 28a:	74 cf       	rjmp	.-280    	; 0x174 <SetBufer+0xac>
+				else
+				bufer[br][br2] |= temp[br2] >> ((shiftNum - 5 - (br * 16) - (br1 * 6)) *(-1) );
 			}
 		}
 	}
 }
- 328:	67 96       	adiw	r28, 0x17	; 23
- 32a:	0f b6       	in	r0, 0x3f	; 63
- 32c:	f8 94       	cli
- 32e:	de bf       	out	0x3e, r29	; 62
- 330:	0f be       	out	0x3f, r0	; 63
- 332:	cd bf       	out	0x3d, r28	; 61
- 334:	df 91       	pop	r29
- 336:	cf 91       	pop	r28
- 338:	1f 91       	pop	r17
- 33a:	0f 91       	pop	r16
- 33c:	ff 90       	pop	r15
- 33e:	ef 90       	pop	r14
- 340:	df 90       	pop	r13
- 342:	cf 90       	pop	r12
- 344:	bf 90       	pop	r11
- 346:	af 90       	pop	r10
- 348:	9f 90       	pop	r9
- 34a:	8f 90       	pop	r8
- 34c:	7f 90       	pop	r7
- 34e:	6f 90       	pop	r6
- 350:	5f 90       	pop	r5
- 352:	4f 90       	pop	r4
- 354:	3f 90       	pop	r3
- 356:	2f 90       	pop	r2
- 358:	08 95       	ret
+ 28c:	2e 96       	adiw	r28, 0x0e	; 14
+ 28e:	0f b6       	in	r0, 0x3f	; 63
+ 290:	f8 94       	cli
+ 292:	de bf       	out	0x3e, r29	; 62
+ 294:	0f be       	out	0x3f, r0	; 63
+ 296:	cd bf       	out	0x3d, r28	; 61
+ 298:	df 91       	pop	r29
+ 29a:	cf 91       	pop	r28
+ 29c:	1f 91       	pop	r17
+ 29e:	0f 91       	pop	r16
+ 2a0:	ff 90       	pop	r15
+ 2a2:	ef 90       	pop	r14
+ 2a4:	df 90       	pop	r13
+ 2a6:	cf 90       	pop	r12
+ 2a8:	bf 90       	pop	r11
+ 2aa:	af 90       	pop	r10
+ 2ac:	9f 90       	pop	r9
+ 2ae:	8f 90       	pop	r8
+ 2b0:	7f 90       	pop	r7
+ 2b2:	6f 90       	pop	r6
+ 2b4:	5f 90       	pop	r5
+ 2b6:	4f 90       	pop	r4
+ 2b8:	3f 90       	pop	r3
+ 2ba:	08 95       	ret
 
-0000035a <TurnOnRow>:
+000002bc <TurnOnRow>:
 
 
 //firs turns off all existing rows then turns on one
 void TurnOnRow(uint8_t row)
 {
 	PORTB &= allRows[ERASE];
- 35a:	90 91 25 01 	lds	r25, 0x0125	; 0x800125 <allRows+0x7>
- 35e:	25 b1       	in	r18, 0x05	; 5
- 360:	92 23       	and	r25, r18
- 362:	95 b9       	out	0x05, r25	; 5
+ 2bc:	90 91 10 01 	lds	r25, 0x0110	; 0x800110 <allRows+0x7>
+ 2c0:	25 b1       	in	r18, 0x05	; 5
+ 2c2:	92 23       	and	r25, r18
+ 2c4:	95 b9       	out	0x05, r25	; 5
 	PORTB |= (1 << RCK);
- 364:	2c 9a       	sbi	0x05, 4	; 5
+ 2c6:	2c 9a       	sbi	0x05, 4	; 5
 	PORTB &= ~(1 << RCK);
- 366:	2c 98       	cbi	0x05, 4	; 5
+ 2c8:	2c 98       	cbi	0x05, 4	; 5
 	PORTB |= allRows[row];
- 368:	e8 2f       	mov	r30, r24
- 36a:	f0 e0       	ldi	r31, 0x00	; 0
- 36c:	e2 5e       	subi	r30, 0xE2	; 226
- 36e:	fe 4f       	sbci	r31, 0xFE	; 254
- 370:	90 81       	ld	r25, Z
- 372:	85 b1       	in	r24, 0x05	; 5
- 374:	89 2b       	or	r24, r25
- 376:	85 b9       	out	0x05, r24	; 5
- 378:	08 95       	ret
+ 2ca:	e8 2f       	mov	r30, r24
+ 2cc:	f0 e0       	ldi	r31, 0x00	; 0
+ 2ce:	e7 5f       	subi	r30, 0xF7	; 247
+ 2d0:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2d2:	90 81       	ld	r25, Z
+ 2d4:	85 b1       	in	r24, 0x05	; 5
+ 2d6:	89 2b       	or	r24, r25
+ 2d8:	85 b9       	out	0x05, r24	; 5
+ 2da:	08 95       	ret
 
-0000037a <SetupTimer>:
+000002dc <SetupTimer>:
 }
 
 //sets up timer with a prescaler of 1024 (currently counts to 250 / 2 ms)
 void SetupTimer()
 {
 	TIMSK1 |= (1 << OCIE1A);
- 37a:	ef e6       	ldi	r30, 0x6F	; 111
- 37c:	f0 e0       	ldi	r31, 0x00	; 0
- 37e:	80 81       	ld	r24, Z
- 380:	82 60       	ori	r24, 0x02	; 2
- 382:	80 83       	st	Z, r24
+ 2dc:	ef e6       	ldi	r30, 0x6F	; 111
+ 2de:	f0 e0       	ldi	r31, 0x00	; 0
+ 2e0:	80 81       	ld	r24, Z
+ 2e2:	82 60       	ori	r24, 0x02	; 2
+ 2e4:	80 83       	st	Z, r24
 	TCCR1B |= (1 << WGM12) | (1 << CS12) | (1 << CS10);
- 384:	e1 e8       	ldi	r30, 0x81	; 129
- 386:	f0 e0       	ldi	r31, 0x00	; 0
- 388:	80 81       	ld	r24, Z
- 38a:	8d 60       	ori	r24, 0x0D	; 13
- 38c:	80 83       	st	Z, r24
+ 2e6:	e1 e8       	ldi	r30, 0x81	; 129
+ 2e8:	f0 e0       	ldi	r31, 0x00	; 0
+ 2ea:	80 81       	ld	r24, Z
+ 2ec:	8d 60       	ori	r24, 0x0D	; 13
+ 2ee:	80 83       	st	Z, r24
 	OCR1A = 1350;
- 38e:	86 e4       	ldi	r24, 0x46	; 70
- 390:	95 e0       	ldi	r25, 0x05	; 5
- 392:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
- 396:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
+ 2f0:	86 e4       	ldi	r24, 0x46	; 70
+ 2f2:	95 e0       	ldi	r25, 0x05	; 5
+ 2f4:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
+ 2f8:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
 	sei();
- 39a:	78 94       	sei
- 39c:	08 95       	ret
+ 2fc:	78 94       	sei
+ 2fe:	08 95       	ret
 
-0000039e <PutData>:
+00000300 <PutData>:
 }
 
 //reads data and puts into the register
 void PutData(uint16_t data)
 {
- 39e:	ef 92       	push	r14
- 3a0:	ff 92       	push	r15
- 3a2:	0f 93       	push	r16
- 3a4:	1f 93       	push	r17
- 3a6:	cf 93       	push	r28
- 3a8:	df 93       	push	r29
- 3aa:	7c 01       	movw	r14, r24
- 3ac:	c0 e0       	ldi	r28, 0x00	; 0
- 3ae:	d0 e0       	ldi	r29, 0x00	; 0
+ 300:	ef 92       	push	r14
+ 302:	ff 92       	push	r15
+ 304:	0f 93       	push	r16
+ 306:	1f 93       	push	r17
+ 308:	cf 93       	push	r28
+ 30a:	df 93       	push	r29
+ 30c:	7c 01       	movw	r14, r24
+ 30e:	c0 e0       	ldi	r28, 0x00	; 0
+ 310:	d0 e0       	ldi	r29, 0x00	; 0
 	//acording to Vajda
 	for(uint8_t br = 0; br < 16; ++br)
 	{
 		if(data & (1 << br))
- 3b0:	01 e0       	ldi	r16, 0x01	; 1
- 3b2:	10 e0       	ldi	r17, 0x00	; 0
- 3b4:	98 01       	movw	r18, r16
- 3b6:	0c 2e       	mov	r0, r28
- 3b8:	02 c0       	rjmp	.+4      	; 0x3be <PutData+0x20>
- 3ba:	22 0f       	add	r18, r18
- 3bc:	33 1f       	adc	r19, r19
- 3be:	0a 94       	dec	r0
- 3c0:	e2 f7       	brpl	.-8      	; 0x3ba <PutData+0x1c>
- 3c2:	2e 21       	and	r18, r14
- 3c4:	3f 21       	and	r19, r15
- 3c6:	23 2b       	or	r18, r19
- 3c8:	21 f0       	breq	.+8      	; 0x3d2 <PutData+0x34>
+ 312:	01 e0       	ldi	r16, 0x01	; 1
+ 314:	10 e0       	ldi	r17, 0x00	; 0
+ 316:	98 01       	movw	r18, r16
+ 318:	0c 2e       	mov	r0, r28
+ 31a:	02 c0       	rjmp	.+4      	; 0x320 <PutData+0x20>
+ 31c:	22 0f       	add	r18, r18
+ 31e:	33 1f       	adc	r19, r19
+ 320:	0a 94       	dec	r0
+ 322:	e2 f7       	brpl	.-8      	; 0x31c <PutData+0x1c>
+ 324:	2e 21       	and	r18, r14
+ 326:	3f 21       	and	r19, r15
+ 328:	23 2b       	or	r18, r19
+ 32a:	21 f0       	breq	.+8      	; 0x334 <PutData+0x34>
 		Shift(1);
- 3ca:	81 e0       	ldi	r24, 0x01	; 1
- 3cc:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
- 3d0:	03 c0       	rjmp	.+6      	; 0x3d8 <PutData+0x3a>
+ 32c:	81 e0       	ldi	r24, 0x01	; 1
+ 32e:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
+ 332:	03 c0       	rjmp	.+6      	; 0x33a <PutData+0x3a>
 		else
 		Shift(0);
- 3d2:	80 e0       	ldi	r24, 0x00	; 0
- 3d4:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
- 3d8:	21 96       	adiw	r28, 0x01	; 1
+ 334:	80 e0       	ldi	r24, 0x00	; 0
+ 336:	0e 94 53 00 	call	0xa6	; 0xa6 <Shift>
+ 33a:	21 96       	adiw	r28, 0x01	; 1
 
 //reads data and puts into the register
 void PutData(uint16_t data)
 {
 	//acording to Vajda
 	for(uint8_t br = 0; br < 16; ++br)
- 3da:	c0 31       	cpi	r28, 0x10	; 16
- 3dc:	d1 05       	cpc	r29, r1
- 3de:	51 f7       	brne	.-44     	; 0x3b4 <PutData+0x16>
+ 33c:	c0 31       	cpi	r28, 0x10	; 16
+ 33e:	d1 05       	cpc	r29, r1
+ 340:	51 f7       	brne	.-44     	; 0x316 <PutData+0x16>
 		if(data & (1 << br))
 		Shift(1);
 		else
 		Shift(0);
 	}
 }
- 3e0:	df 91       	pop	r29
- 3e2:	cf 91       	pop	r28
- 3e4:	1f 91       	pop	r17
- 3e6:	0f 91       	pop	r16
- 3e8:	ff 90       	pop	r15
- 3ea:	ef 90       	pop	r14
- 3ec:	08 95       	ret
+ 342:	df 91       	pop	r29
+ 344:	cf 91       	pop	r28
+ 346:	1f 91       	pop	r17
+ 348:	0f 91       	pop	r16
+ 34a:	ff 90       	pop	r15
+ 34c:	ef 90       	pop	r14
+ 34e:	08 95       	ret
 
-000003ee <main>:
+00000350 <main>:
 
 int main()
 {
 	
 	//setup
 	DDRB = 0xFF;
- 3ee:	8f ef       	ldi	r24, 0xFF	; 255
- 3f0:	84 b9       	out	0x04, r24	; 4
-	DDRC |= (1 << 5);
- 3f2:	3d 9a       	sbi	0x07, 5	; 7
+ 350:	8f ef       	ldi	r24, 0xFF	; 255
+ 352:	84 b9       	out	0x04, r24	; 4
+	DDRC |= (1 << SRCK);
+ 354:	3d 9a       	sbi	0x07, 5	; 7
 	SetupTimer();
- 3f4:	0e 94 bd 01 	call	0x37a	; 0x37a <SetupTimer>
+ 356:	0e 94 6e 01 	call	0x2dc	; 0x2dc <SetupTimer>
 	Clear();
- 3f8:	0e 94 5b 00 	call	0xb6	; 0xb6 <Clear>
+ 35a:	0e 94 5b 00 	call	0xb6	; 0xb6 <Clear>
 	
 	while(1)
 	{
 		SetBufer();
- 3fc:	00 e0       	ldi	r16, 0x00	; 0
- 3fe:	10 e0       	ldi	r17, 0x00	; 0
- 400:	0e 94 64 00 	call	0xc8	; 0xc8 <SetBufer>
- 404:	c0 2f       	mov	r28, r16
- 406:	d1 2f       	mov	r29, r17
+ 35e:	00 e0       	ldi	r16, 0x00	; 0
+ 360:	10 e0       	ldi	r17, 0x00	; 0
+ 362:	0e 94 64 00 	call	0xc8	; 0xc8 <SetBufer>
+ 366:	c0 2f       	mov	r28, r16
+ 368:	d1 2f       	mov	r29, r17
 			for(uint8_t br = 0; br < 7; ++br)
 			{
 				for(uint8_t br1 = 0; br1 < PLATE_NUM; ++br1)
 				{
 					PutData(bufer[br1][br]);
- 408:	fe 01       	movw	r30, r28
- 40a:	ee 0f       	add	r30, r30
- 40c:	ff 1f       	adc	r31, r31
- 40e:	e9 5d       	subi	r30, 0xD9	; 217
- 410:	fe 4f       	sbci	r31, 0xFE	; 254
- 412:	80 81       	ld	r24, Z
- 414:	91 81       	ldd	r25, Z+1	; 0x01
- 416:	0e 94 cf 01 	call	0x39e	; 0x39e <PutData>
- 41a:	fe 01       	movw	r30, r28
- 41c:	ee 0f       	add	r30, r30
- 41e:	ff 1f       	adc	r31, r31
- 420:	eb 5c       	subi	r30, 0xCB	; 203
- 422:	fe 4f       	sbci	r31, 0xFE	; 254
- 424:	80 81       	ld	r24, Z
- 426:	91 81       	ldd	r25, Z+1	; 0x01
- 428:	0e 94 cf 01 	call	0x39e	; 0x39e <PutData>
- 42c:	fe 01       	movw	r30, r28
- 42e:	ee 0f       	add	r30, r30
- 430:	ff 1f       	adc	r31, r31
- 432:	ed 5b       	subi	r30, 0xBD	; 189
- 434:	fe 4f       	sbci	r31, 0xFE	; 254
- 436:	80 81       	ld	r24, Z
- 438:	91 81       	ldd	r25, Z+1	; 0x01
- 43a:	0e 94 cf 01 	call	0x39e	; 0x39e <PutData>
+ 36a:	fe 01       	movw	r30, r28
+ 36c:	ee 0f       	add	r30, r30
+ 36e:	ff 1f       	adc	r31, r31
+ 370:	ed 5e       	subi	r30, 0xED	; 237
+ 372:	fe 4f       	sbci	r31, 0xFE	; 254
+ 374:	80 81       	ld	r24, Z
+ 376:	91 81       	ldd	r25, Z+1	; 0x01
+ 378:	0e 94 80 01 	call	0x300	; 0x300 <PutData>
 				}
 				TurnOnRow(br);
- 43e:	8c 2f       	mov	r24, r28
- 440:	0e 94 ad 01 	call	0x35a	; 0x35a <TurnOnRow>
- 444:	21 96       	adiw	r28, 0x01	; 1
+ 37c:	8c 2f       	mov	r24, r28
+ 37e:	0e 94 5e 01 	call	0x2bc	; 0x2bc <TurnOnRow>
+ 382:	21 96       	adiw	r28, 0x01	; 1
 	Clear();
 	
 	while(1)
 	{
 		SetBufer();
 			for(uint8_t br = 0; br < 7; ++br)
- 446:	c7 30       	cpi	r28, 0x07	; 7
- 448:	d1 05       	cpc	r29, r1
- 44a:	f1 f6       	brne	.-68     	; 0x408 <__FUSE_REGION_LENGTH__+0x8>
- 44c:	d9 cf       	rjmp	.-78     	; 0x400 <__FUSE_REGION_LENGTH__>
+ 384:	c7 30       	cpi	r28, 0x07	; 7
+ 386:	d1 05       	cpc	r29, r1
+ 388:	81 f7       	brne	.-32     	; 0x36a <main+0x1a>
+ 38a:	eb cf       	rjmp	.-42     	; 0x362 <main+0x12>
 
-0000044e <__vector_11>:
+0000038c <__vector_11>:
 	}
 }
 
 //interupts evry 500 ms and moovs the letters by 1 (goes until (5 * strlen(text) ) + 16 ) and then starts all over )
 ISR(TIMER1_COMPA_vect)
 {
- 44e:	1f 92       	push	r1
- 450:	0f 92       	push	r0
- 452:	0f b6       	in	r0, 0x3f	; 63
- 454:	0f 92       	push	r0
- 456:	11 24       	eor	r1, r1
- 458:	2f 93       	push	r18
- 45a:	3f 93       	push	r19
- 45c:	8f 93       	push	r24
- 45e:	9f 93       	push	r25
- 460:	ef 93       	push	r30
- 462:	ff 93       	push	r31
+ 38c:	1f 92       	push	r1
+ 38e:	0f 92       	push	r0
+ 390:	0f b6       	in	r0, 0x3f	; 63
+ 392:	0f 92       	push	r0
+ 394:	11 24       	eor	r1, r1
+ 396:	2f 93       	push	r18
+ 398:	3f 93       	push	r19
+ 39a:	8f 93       	push	r24
+ 39c:	9f 93       	push	r25
+ 39e:	ef 93       	push	r30
+ 3a0:	ff 93       	push	r31
 	shiftNum++;
- 464:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
- 468:	8f 5f       	subi	r24, 0xFF	; 255
- 46a:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <__data_end>
+ 3a2:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <__data_end>
+ 3a6:	8f 5f       	subi	r24, 0xFF	; 255
+ 3a8:	80 93 12 01 	sts	0x0112, r24	; 0x800112 <__data_end>
 	if (shiftNum > ((5 * strlen(text) ) + (16 * PLATE_NUM) ) )
- 46e:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
- 472:	e0 e0       	ldi	r30, 0x00	; 0
- 474:	f1 e0       	ldi	r31, 0x01	; 1
- 476:	01 90       	ld	r0, Z+
- 478:	00 20       	and	r0, r0
- 47a:	e9 f7       	brne	.-6      	; 0x476 <__vector_11+0x28>
- 47c:	31 97       	sbiw	r30, 0x01	; 1
- 47e:	e0 50       	subi	r30, 0x00	; 0
- 480:	f1 40       	sbci	r31, 0x01	; 1
- 482:	90 e0       	ldi	r25, 0x00	; 0
- 484:	9f 01       	movw	r18, r30
- 486:	22 0f       	add	r18, r18
- 488:	33 1f       	adc	r19, r19
- 48a:	22 0f       	add	r18, r18
- 48c:	33 1f       	adc	r19, r19
- 48e:	e2 0f       	add	r30, r18
- 490:	f3 1f       	adc	r31, r19
- 492:	f0 96       	adiw	r30, 0x30	; 48
- 494:	e8 17       	cp	r30, r24
- 496:	f9 07       	cpc	r31, r25
- 498:	10 f4       	brcc	.+4      	; 0x49e <__vector_11+0x50>
+ 3ac:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <__data_end>
+ 3b0:	e0 e0       	ldi	r30, 0x00	; 0
+ 3b2:	f1 e0       	ldi	r31, 0x01	; 1
+ 3b4:	01 90       	ld	r0, Z+
+ 3b6:	00 20       	and	r0, r0
+ 3b8:	e9 f7       	brne	.-6      	; 0x3b4 <__vector_11+0x28>
+ 3ba:	31 97       	sbiw	r30, 0x01	; 1
+ 3bc:	e0 50       	subi	r30, 0x00	; 0
+ 3be:	f1 40       	sbci	r31, 0x01	; 1
+ 3c0:	90 e0       	ldi	r25, 0x00	; 0
+ 3c2:	9f 01       	movw	r18, r30
+ 3c4:	22 0f       	add	r18, r18
+ 3c6:	33 1f       	adc	r19, r19
+ 3c8:	22 0f       	add	r18, r18
+ 3ca:	33 1f       	adc	r19, r19
+ 3cc:	e2 0f       	add	r30, r18
+ 3ce:	f3 1f       	adc	r31, r19
+ 3d0:	70 96       	adiw	r30, 0x10	; 16
+ 3d2:	e8 17       	cp	r30, r24
+ 3d4:	f9 07       	cpc	r31, r25
+ 3d6:	10 f4       	brcc	.+4      	; 0x3dc <__vector_11+0x50>
 	{
 		shiftNum = 0;
- 49a:	10 92 26 01 	sts	0x0126, r1	; 0x800126 <__data_end>
+ 3d8:	10 92 12 01 	sts	0x0112, r1	; 0x800112 <__data_end>
 	}
 }
- 49e:	ff 91       	pop	r31
- 4a0:	ef 91       	pop	r30
- 4a2:	9f 91       	pop	r25
- 4a4:	8f 91       	pop	r24
- 4a6:	3f 91       	pop	r19
- 4a8:	2f 91       	pop	r18
- 4aa:	0f 90       	pop	r0
- 4ac:	0f be       	out	0x3f, r0	; 63
- 4ae:	0f 90       	pop	r0
- 4b0:	1f 90       	pop	r1
- 4b2:	18 95       	reti
+ 3dc:	ff 91       	pop	r31
+ 3de:	ef 91       	pop	r30
+ 3e0:	9f 91       	pop	r25
+ 3e2:	8f 91       	pop	r24
+ 3e4:	3f 91       	pop	r19
+ 3e6:	2f 91       	pop	r18
+ 3e8:	0f 90       	pop	r0
+ 3ea:	0f be       	out	0x3f, r0	; 63
+ 3ec:	0f 90       	pop	r0
+ 3ee:	1f 90       	pop	r1
+ 3f0:	18 95       	reti
 
-000004b4 <__divmodhi4>:
- 4b4:	97 fb       	bst	r25, 7
- 4b6:	07 2e       	mov	r0, r23
- 4b8:	16 f4       	brtc	.+4      	; 0x4be <__divmodhi4+0xa>
- 4ba:	00 94       	com	r0
- 4bc:	07 d0       	rcall	.+14     	; 0x4cc <__divmodhi4_neg1>
- 4be:	77 fd       	sbrc	r23, 7
- 4c0:	09 d0       	rcall	.+18     	; 0x4d4 <__divmodhi4_neg2>
- 4c2:	0e 94 6e 02 	call	0x4dc	; 0x4dc <__udivmodhi4>
- 4c6:	07 fc       	sbrc	r0, 7
- 4c8:	05 d0       	rcall	.+10     	; 0x4d4 <__divmodhi4_neg2>
- 4ca:	3e f4       	brtc	.+14     	; 0x4da <__divmodhi4_exit>
+000003f2 <__divmodhi4>:
+ 3f2:	97 fb       	bst	r25, 7
+ 3f4:	07 2e       	mov	r0, r23
+ 3f6:	16 f4       	brtc	.+4      	; 0x3fc <__divmodhi4+0xa>
+ 3f8:	00 94       	com	r0
+ 3fa:	07 d0       	rcall	.+14     	; 0x40a <__divmodhi4_neg1>
+ 3fc:	77 fd       	sbrc	r23, 7
+ 3fe:	09 d0       	rcall	.+18     	; 0x412 <__divmodhi4_neg2>
+ 400:	0e 94 0d 02 	call	0x41a	; 0x41a <__udivmodhi4>
+ 404:	07 fc       	sbrc	r0, 7
+ 406:	05 d0       	rcall	.+10     	; 0x412 <__divmodhi4_neg2>
+ 408:	3e f4       	brtc	.+14     	; 0x418 <__divmodhi4_exit>
 
-000004cc <__divmodhi4_neg1>:
- 4cc:	90 95       	com	r25
- 4ce:	81 95       	neg	r24
- 4d0:	9f 4f       	sbci	r25, 0xFF	; 255
- 4d2:	08 95       	ret
+0000040a <__divmodhi4_neg1>:
+ 40a:	90 95       	com	r25
+ 40c:	81 95       	neg	r24
+ 40e:	9f 4f       	sbci	r25, 0xFF	; 255
+ 410:	08 95       	ret
 
-000004d4 <__divmodhi4_neg2>:
- 4d4:	70 95       	com	r23
- 4d6:	61 95       	neg	r22
- 4d8:	7f 4f       	sbci	r23, 0xFF	; 255
+00000412 <__divmodhi4_neg2>:
+ 412:	70 95       	com	r23
+ 414:	61 95       	neg	r22
+ 416:	7f 4f       	sbci	r23, 0xFF	; 255
 
-000004da <__divmodhi4_exit>:
- 4da:	08 95       	ret
+00000418 <__divmodhi4_exit>:
+ 418:	08 95       	ret
 
-000004dc <__udivmodhi4>:
- 4dc:	aa 1b       	sub	r26, r26
- 4de:	bb 1b       	sub	r27, r27
- 4e0:	51 e1       	ldi	r21, 0x11	; 17
- 4e2:	07 c0       	rjmp	.+14     	; 0x4f2 <__udivmodhi4_ep>
+0000041a <__udivmodhi4>:
+ 41a:	aa 1b       	sub	r26, r26
+ 41c:	bb 1b       	sub	r27, r27
+ 41e:	51 e1       	ldi	r21, 0x11	; 17
+ 420:	07 c0       	rjmp	.+14     	; 0x430 <__udivmodhi4_ep>
 
-000004e4 <__udivmodhi4_loop>:
- 4e4:	aa 1f       	adc	r26, r26
- 4e6:	bb 1f       	adc	r27, r27
- 4e8:	a6 17       	cp	r26, r22
- 4ea:	b7 07       	cpc	r27, r23
- 4ec:	10 f0       	brcs	.+4      	; 0x4f2 <__udivmodhi4_ep>
- 4ee:	a6 1b       	sub	r26, r22
- 4f0:	b7 0b       	sbc	r27, r23
+00000422 <__udivmodhi4_loop>:
+ 422:	aa 1f       	adc	r26, r26
+ 424:	bb 1f       	adc	r27, r27
+ 426:	a6 17       	cp	r26, r22
+ 428:	b7 07       	cpc	r27, r23
+ 42a:	10 f0       	brcs	.+4      	; 0x430 <__udivmodhi4_ep>
+ 42c:	a6 1b       	sub	r26, r22
+ 42e:	b7 0b       	sbc	r27, r23
 
-000004f2 <__udivmodhi4_ep>:
- 4f2:	88 1f       	adc	r24, r24
- 4f4:	99 1f       	adc	r25, r25
- 4f6:	5a 95       	dec	r21
- 4f8:	a9 f7       	brne	.-22     	; 0x4e4 <__udivmodhi4_loop>
- 4fa:	80 95       	com	r24
- 4fc:	90 95       	com	r25
- 4fe:	bc 01       	movw	r22, r24
- 500:	cd 01       	movw	r24, r26
- 502:	08 95       	ret
+00000430 <__udivmodhi4_ep>:
+ 430:	88 1f       	adc	r24, r24
+ 432:	99 1f       	adc	r25, r25
+ 434:	5a 95       	dec	r21
+ 436:	a9 f7       	brne	.-22     	; 0x422 <__udivmodhi4_loop>
+ 438:	80 95       	com	r24
+ 43a:	90 95       	com	r25
+ 43c:	bc 01       	movw	r22, r24
+ 43e:	cd 01       	movw	r24, r26
+ 440:	08 95       	ret
 
-00000504 <_exit>:
- 504:	f8 94       	cli
+00000442 <_exit>:
+ 442:	f8 94       	cli
 
-00000506 <__stop_program>:
- 506:	ff cf       	rjmp	.-2      	; 0x506 <__stop_program>
+00000444 <__stop_program>:
+ 444:	ff cf       	rjmp	.-2      	; 0x444 <__stop_program>

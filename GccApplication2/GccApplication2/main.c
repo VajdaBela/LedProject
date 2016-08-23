@@ -22,7 +22,7 @@
 #define SERIN 5
 #define SRCK 5
 
-#define PLATE_NUM 3
+#define PLATE_NUM 1
 
 //number of movements
 volatile uint8_t shiftNum = 0;
@@ -32,15 +32,13 @@ volatile uint8_t const allRows[8] = {0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0
 #define ERASE 7
 //character we are using
 volatile uint8_t const numbers[][7] = { 
-	{0b00001111, 0b00001001, 0b00001001, 0b00001001, 0b00001001, 0b00001001, 0b00001111 },//0
-	{0b00000001, 0b00000011, 0b00000101, 0b00001001, 0b00000001, 0b00000001, 0b00000001 },//1
-	{0b00001111, 0b00000001, 0b00000001, 0b00001111, 0b00001000, 0b00001000, 0b00001111 },//2
+	{0b00001110, 0b00010001, 0b00010011, 0b00010101, 0b00011001, 0b00010001, 0b00001110 },//0
 };
 //what should be put in the register
 volatile uint16_t bufer[PLATE_NUM][7];
 
 //what will be written out
-char text[] = "01221201";
+char text[] = "0";
 
 //puts either 1 or 0 into the register 
 void Shift(uint8_t state)
@@ -82,7 +80,7 @@ void SetBufer()
 	
 	for(uint8_t br = 0; br < PLATE_NUM; ++br )
 	{
-		int8_t lastSign = (shiftNum - (16 * br)) / 5;
+		int8_t lastSign = (shiftNum - (16 * br)) / 6;
 		int8_t firstSign = lastSign - 3;
 		if(firstSign < 0 )
 		firstSign = 0;
@@ -100,10 +98,10 @@ void SetBufer()
 			//set bufer
 			for(uint8_t br2 = 0; br2 < 7; ++br2 )
 			{
-				if((shiftNum - 4 - (br * 16) - (br1 * 5) ) > 0 )
-				bufer[br][br2] |= temp[br2] << (shiftNum - 4 - (br * 16) - (br1 * 5) );
+				if((shiftNum - 5 - (br * 16) - (br1 * 6) ) > 0 )
+				bufer[br][br2] |= temp[br2] << (shiftNum - 5 - (br * 16) - (br1 * 6) );
 				else
-				bufer[br][br2] |= temp[br2] >> ((shiftNum - 4 - (br * 16) - (br1 * 5)) *(-1) );
+				bufer[br][br2] |= temp[br2] >> ((shiftNum - 5 - (br * 16) - (br1 * 6)) *(-1) );
 			}
 		}
 	}
@@ -147,7 +145,7 @@ int main()
 	
 	//setup
 	DDRB = 0xFF;
-	DDRC |= (1 << 5);
+	DDRC |= (1 << SRCK);
 	SetupTimer();
 	Clear();
 	

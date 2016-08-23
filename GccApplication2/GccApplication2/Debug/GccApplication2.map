@@ -14,7 +14,7 @@ c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/
 Allocating common symbols
 Common symbol       size              file
 
-bufer               0x2a              main.o
+bufer               0xe               main.o
 
 Discarded input sections
 
@@ -224,7 +224,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x508
+.text           0x00000000      0x446
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Users/Kripton/Desktop/atmel studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328/avr5/crtatmega328.o
                 0x00000000                __vector_default
@@ -315,33 +315,33 @@ END GROUP
  .text.Clear    0x000000b6       0x12 main.o
                 0x000000b6                Clear
  .text.SetBufer
-                0x000000c8      0x292 main.o
+                0x000000c8      0x1f4 main.o
                 0x000000c8                SetBufer
  .text.TurnOnRow
-                0x0000035a       0x20 main.o
-                0x0000035a                TurnOnRow
+                0x000002bc       0x20 main.o
+                0x000002bc                TurnOnRow
  .text.SetupTimer
-                0x0000037a       0x24 main.o
-                0x0000037a                SetupTimer
- .text.PutData  0x0000039e       0x50 main.o
-                0x0000039e                PutData
- .text.main     0x000003ee       0x60 main.o
-                0x000003ee                main
+                0x000002dc       0x24 main.o
+                0x000002dc                SetupTimer
+ .text.PutData  0x00000300       0x50 main.o
+                0x00000300                PutData
+ .text.main     0x00000350       0x3c main.o
+                0x00000350                main
  .text.__vector_11
-                0x0000044e       0x66 main.o
-                0x0000044e                __vector_11
+                0x0000038c       0x66 main.o
+                0x0000038c                __vector_11
  .text.libgcc.div
-                0x000004b4       0x28 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_divmodhi4.o)
-                0x000004b4                _div
-                0x000004b4                __divmodhi4
+                0x000003f2       0x28 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_divmodhi4.o)
+                0x000003f2                _div
+                0x000003f2                __divmodhi4
  .text.libgcc.div
-                0x000004dc       0x28 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodhi4.o)
-                0x000004dc                __udivmodhi4
-                0x00000504                . = ALIGN (0x2)
+                0x0000041a       0x28 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodhi4.o)
+                0x0000041a                __udivmodhi4
+                0x00000442                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000504        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
-                0x00000504                _exit
-                0x00000504                exit
+ .fini9         0x00000442        0x0 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000442                _exit
+                0x00000442                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -360,45 +360,46 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000504        0x4 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000442        0x4 c:/users/kripton/desktop/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000508                _etext = .
+                0x00000446                _etext = .
 
-.data           0x00800100       0x26 load address 0x00000508
+.data           0x00800100       0x12 load address 0x00000446
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.text     0x00800100        0x9 main.o
+ .data.text     0x00800100        0x2 main.o
                 0x00800100                text
- .data.numbers  0x00800109       0x15 main.o
-                0x00800109                numbers
- .data.allRows  0x0080011e        0x8 main.o
-                0x0080011e                allRows
+ .data.numbers  0x00800102        0x7 main.o
+                0x00800102                numbers
+ .data.allRows  0x00800109        0x8 main.o
+                0x00800109                allRows
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x00800126                . = ALIGN (0x2)
-                0x00800126                _edata = .
-                0x00800126                PROVIDE (__data_end, .)
+                0x00800112                . = ALIGN (0x2)
+ *fill*         0x00800111        0x1 
+                0x00800112                _edata = .
+                0x00800112                PROVIDE (__data_end, .)
 
-.bss            0x00800126       0x2b
-                0x00800126                PROVIDE (__bss_start, .)
+.bss            0x00800112        0xf
+                0x00800112                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.shiftNum  0x00800126        0x1 main.o
-                0x00800126                shiftNum
+ .bss.shiftNum  0x00800112        0x1 main.o
+                0x00800112                shiftNum
  *(COMMON)
- COMMON         0x00800127       0x2a main.o
-                0x00800127                bufer
-                0x00800151                PROVIDE (__bss_end, .)
-                0x00000508                __data_load_start = LOADADDR (.data)
-                0x0000052e                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800113        0xe main.o
+                0x00800113                bufer
+                0x00800121                PROVIDE (__bss_end, .)
+                0x00000446                __data_load_start = LOADADDR (.data)
+                0x00000458                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800151        0x0
+.noinit         0x00800121        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800151                _end = .
+                0x00800121                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -471,30 +472,30 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x3fc
+.debug_info     0x00000000      0x3f3
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x3fc main.o
+ .debug_info    0x00000000      0x3f3 main.o
 
-.debug_abbrev   0x00000000      0x1ab
+.debug_abbrev   0x00000000      0x1ba
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x1ab main.o
+ .debug_abbrev  0x00000000      0x1ba main.o
 
-.debug_line     0x00000000      0x2d1
+.debug_line     0x00000000      0x2a5
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x2d1 main.o
+ .debug_line    0x00000000      0x2a5 main.o
 
-.debug_frame    0x00000000      0x144
+.debug_frame    0x00000000      0x140
  *(.debug_frame)
- .debug_frame   0x00000000      0x144 main.o
+ .debug_frame   0x00000000      0x140 main.o
 
 .debug_str      0x00000000      0x1cd
  *(.debug_str)
  .debug_str     0x00000000      0x1cd main.o
                                 0x20d (size before relaxing)
 
-.debug_loc      0x00000000      0x4d7
+.debug_loc      0x00000000      0x45b
  *(.debug_loc)
- .debug_loc     0x00000000      0x4d7 main.o
+ .debug_loc     0x00000000      0x45b main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -514,9 +515,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xd8
+.debug_ranges   0x00000000       0x80
  *(.debug_ranges)
- .debug_ranges  0x00000000       0xd8 main.o
+ .debug_ranges  0x00000000       0x80 main.o
 
 .debug_macro
  *(.debug_macro)
