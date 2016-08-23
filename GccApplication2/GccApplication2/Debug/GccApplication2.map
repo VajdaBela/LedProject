@@ -367,39 +367,40 @@ END GROUP
  *(.fini0)
                 0x0000078a                _etext = .
 
-.data           0x00800100       0x20 load address 0x0000078a
+.data           0x00800100       0x26 load address 0x0000078a
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.text     0x00800100       0x18 main.o
+ .data.text     0x00800100       0x1d main.o
                 0x00800100                text
- .data.allRows  0x00800118        0x8 main.o
-                0x00800118                allRows
+ .data.allRows  0x0080011d        0x8 main.o
+                0x0080011d                allRows
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x00800120                . = ALIGN (0x2)
-                0x00800120                _edata = .
-                0x00800120                PROVIDE (__data_end, .)
+                0x00800126                . = ALIGN (0x2)
+ *fill*         0x00800125        0x1 
+                0x00800126                _edata = .
+                0x00800126                PROVIDE (__data_end, .)
 
-.bss            0x00800120       0x1d
-                0x00800120                PROVIDE (__bss_start, .)
+.bss            0x00800126       0x1d
+                0x00800126                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.shiftNum  0x00800120        0x1 main.o
-                0x00800120                shiftNum
+ .bss.shiftNum  0x00800126        0x1 main.o
+                0x00800126                shiftNum
  *(COMMON)
- COMMON         0x00800121       0x1c main.o
-                0x00800121                bufer
-                0x0080013d                PROVIDE (__bss_end, .)
+ COMMON         0x00800127       0x1c main.o
+                0x00800127                bufer
+                0x00800143                PROVIDE (__bss_end, .)
                 0x0000078a                __data_load_start = LOADADDR (.data)
-                0x000007aa                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000007b0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080013d        0x0
+.noinit         0x00800143        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080013d                _end = .
+                0x00800143                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0

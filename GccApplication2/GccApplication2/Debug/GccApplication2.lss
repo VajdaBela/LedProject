@@ -3,31 +3,31 @@ GccApplication2.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000020  00800100  0000078a  0000081e  2**0
+  0 .data         00000026  00800100  0000078a  0000081e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   1 .text         0000078a  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000001d  00800120  00800120  0000083e  2**0
+  2 .bss          0000001d  00800126  00800126  00000844  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000083e  2**0
+  3 .comment      00000030  00000000  00000000  00000844  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000870  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000874  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000058  00000000  00000000  000008ac  2**0
+  5 .debug_aranges 00000058  00000000  00000000  000008b0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000421  00000000  00000000  00000904  2**0
+  6 .debug_info   00000421  00000000  00000000  00000908  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000001ba  00000000  00000000  00000d25  2**0
+  7 .debug_abbrev 000001ba  00000000  00000000  00000d29  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000002db  00000000  00000000  00000edf  2**0
+  8 .debug_line   000002db  00000000  00000000  00000ee3  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000144  00000000  00000000  000011bc  2**2
+  9 .debug_frame  00000144  00000000  00000000  000011c0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000001df  00000000  00000000  00001300  2**0
+ 10 .debug_str    000001df  00000000  00000000  00001304  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000054c  00000000  00000000  000014df  2**0
+ 11 .debug_loc    0000054c  00000000  00000000  000014e3  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000d8  00000000  00000000  00001a2b  2**0
+ 12 .debug_ranges 000000d8  00000000  00000000  00001a2f  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -406,13 +406,13 @@ Disassembly of section .text:
  318:	02 c0       	rjmp	.+4      	; 0x31e <__do_copy_data+0x10>
  31a:	05 90       	lpm	r0, Z+
  31c:	0d 92       	st	X+, r0
- 31e:	a0 32       	cpi	r26, 0x20	; 32
+ 31e:	a6 32       	cpi	r26, 0x26	; 38
  320:	b1 07       	cpc	r27, r17
  322:	d9 f7       	brne	.-10     	; 0x31a <__do_copy_data+0xc>
 
 00000324 <__do_clear_bss>:
  324:	21 e0       	ldi	r18, 0x01	; 1
- 326:	a0 e2       	ldi	r26, 0x20	; 32
+ 326:	a6 e2       	ldi	r26, 0x26	; 38
  328:	b1 e0       	ldi	r27, 0x01	; 1
  32a:	01 c0       	rjmp	.+2      	; 0x32e <.do_clear_bss_start>
 
@@ -420,7 +420,7 @@ Disassembly of section .text:
  32c:	1d 92       	st	X+, r1
 
 0000032e <.do_clear_bss_start>:
- 32e:	ad 33       	cpi	r26, 0x3D	; 61
+ 32e:	a3 34       	cpi	r26, 0x43	; 67
  330:	b2 07       	cpc	r27, r18
  332:	e1 f7       	brne	.-8      	; 0x32c <.do_clear_bss_loop>
  334:	0e 94 41 03 	call	0x682	; 0x682 <main>
@@ -430,7 +430,7 @@ Disassembly of section .text:
  33c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000340 <Shift>:
-char text[] = "Stefan Kozomora burzulj";
+char text[] = "Stefan Kozomora nije burzulj";
 
 //puts either 1 or 0 into the register 
 void Shift(uint8_t state)
@@ -522,7 +522,7 @@ void SetBufer()
  39a:	fc 01       	movw	r30, r24
  39c:	ee 0f       	add	r30, r30
  39e:	ff 1f       	adc	r31, r31
- 3a0:	ef 5d       	subi	r30, 0xDF	; 223
+ 3a0:	e9 5d       	subi	r30, 0xD9	; 217
  3a2:	fe 4f       	sbci	r31, 0xFE	; 254
  3a4:	11 82       	std	Z+1, r1	; 0x01
  3a6:	10 82       	st	Z, r1
@@ -543,7 +543,7 @@ void SetBufer()
  3b4:	fc 01       	movw	r30, r24
  3b6:	ee 0f       	add	r30, r30
  3b8:	ff 1f       	adc	r31, r31
- 3ba:	e1 5d       	subi	r30, 0xD1	; 209
+ 3ba:	eb 5c       	subi	r30, 0xCB	; 203
  3bc:	fe 4f       	sbci	r31, 0xFE	; 254
  3be:	11 82       	std	Z+1, r1	; 0x01
  3c0:	10 82       	st	Z, r1
@@ -619,7 +619,7 @@ void SetBufer()
 	for(uint8_t br = 0; br < PLATE_NUM; ++br )
 	{
 		int8_t lastSign = (shiftNum - (16 * br)) / 6;
- 3fe:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+ 3fe:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
  402:	ee 89       	ldd	r30, Y+22	; 0x16
  404:	ff 89       	ldd	r31, Y+23	; 0x17
  406:	cc 88       	ldd	r12, Y+20	; 0x14
@@ -755,7 +755,7 @@ void SetBufer()
 			for(uint8_t br2 = 0; br2 < 7; ++br2 )
 			{
 				if((shiftNum - 5 - (br * 16) - (br1 * 6) ) > 0 )
- 4bc:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+ 4bc:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
  4c0:	90 e0       	ldi	r25, 0x00	; 0
  4c2:	05 97       	sbiw	r24, 0x05	; 5
  4c4:	8c 0d       	add	r24, r12
@@ -766,13 +766,13 @@ void SetBufer()
  4ce:	19 06       	cpc	r1, r25
  4d0:	f4 f4       	brge	.+60     	; 0x50e <__FUSE_REGION_LENGTH__+0x10e>
 				bufer[br][br2] |= temp[br2] << (shiftNum - 5 - (br * 16) - (br1 * 6) );
- 4d2:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+ 4d2:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
  4d6:	f5 01       	movw	r30, r10
  4d8:	e6 0f       	add	r30, r22
  4da:	f7 1f       	adc	r31, r23
  4dc:	ee 0f       	add	r30, r30
  4de:	ff 1f       	adc	r31, r31
- 4e0:	ef 5d       	subi	r30, 0xDF	; 223
+ 4e0:	e9 5d       	subi	r30, 0xD9	; 217
  4e2:	fe 4f       	sbci	r31, 0xFE	; 254
  4e4:	20 81       	ld	r18, Z
  4e6:	31 81       	ldd	r19, Z+1	; 0x01
@@ -797,13 +797,13 @@ void SetBufer()
  50c:	1f c0       	rjmp	.+62     	; 0x54c <__FUSE_REGION_LENGTH__+0x14c>
 				else
 				bufer[br][br2] |= temp[br2] >> ((shiftNum - 5 - (br * 16) - (br1 * 6)) *(-1) );
- 50e:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+ 50e:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
  512:	f5 01       	movw	r30, r10
  514:	e6 0f       	add	r30, r22
  516:	f7 1f       	adc	r31, r23
  518:	ee 0f       	add	r30, r30
  51a:	ff 1f       	adc	r31, r31
- 51c:	ef 5d       	subi	r30, 0xDF	; 223
+ 51c:	e9 5d       	subi	r30, 0xD9	; 217
  51e:	fe 4f       	sbci	r31, 0xFE	; 254
  520:	20 81       	ld	r18, Z
  522:	31 81       	ldd	r19, Z+1	; 0x01
@@ -945,7 +945,7 @@ void SetBufer()
 void TurnOnRow(uint8_t row)
 {
 	PORTB &= allRows[ERASE];
- 5ee:	90 91 1f 01 	lds	r25, 0x011F	; 0x80011f <allRows+0x7>
+ 5ee:	90 91 24 01 	lds	r25, 0x0124	; 0x800124 <allRows+0x7>
  5f2:	25 b1       	in	r18, 0x05	; 5
  5f4:	92 23       	and	r25, r18
  5f6:	95 b9       	out	0x05, r25	; 5
@@ -956,7 +956,7 @@ void TurnOnRow(uint8_t row)
 	PORTB |= allRows[row];
  5fc:	e8 2f       	mov	r30, r24
  5fe:	f0 e0       	ldi	r31, 0x00	; 0
- 600:	e8 5e       	subi	r30, 0xE8	; 232
+ 600:	e3 5e       	subi	r30, 0xE3	; 227
  602:	fe 4f       	sbci	r31, 0xFE	; 254
  604:	90 81       	ld	r25, Z
  606:	85 b1       	in	r24, 0x05	; 5
@@ -1087,7 +1087,7 @@ int main()
  69c:	fe 01       	movw	r30, r28
  69e:	ee 0f       	add	r30, r30
  6a0:	ff 1f       	adc	r31, r31
- 6a2:	ef 5d       	subi	r30, 0xDF	; 223
+ 6a2:	e9 5d       	subi	r30, 0xD9	; 217
  6a4:	fe 4f       	sbci	r31, 0xFE	; 254
  6a6:	80 81       	ld	r24, Z
  6a8:	91 81       	ldd	r25, Z+1	; 0x01
@@ -1095,7 +1095,7 @@ int main()
  6ae:	fe 01       	movw	r30, r28
  6b0:	ee 0f       	add	r30, r30
  6b2:	ff 1f       	adc	r31, r31
- 6b4:	e1 5d       	subi	r30, 0xD1	; 209
+ 6b4:	eb 5c       	subi	r30, 0xCB	; 203
  6b6:	fe 4f       	sbci	r31, 0xFE	; 254
  6b8:	80 81       	ld	r24, Z
  6ba:	91 81       	ldd	r25, Z+1	; 0x01
@@ -1135,11 +1135,11 @@ ISR(TIMER1_COMPA_vect)
  6e2:	ef 93       	push	r30
  6e4:	ff 93       	push	r31
 	shiftNum++;
- 6e6:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+ 6e6:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
  6ea:	8f 5f       	subi	r24, 0xFF	; 255
- 6ec:	80 93 20 01 	sts	0x0120, r24	; 0x800120 <__data_end>
+ 6ec:	80 93 26 01 	sts	0x0126, r24	; 0x800126 <__data_end>
 	if (shiftNum > ((6 * strlen(text) ) + (16 * PLATE_NUM) ) )
- 6f0:	80 91 20 01 	lds	r24, 0x0120	; 0x800120 <__data_end>
+ 6f0:	80 91 26 01 	lds	r24, 0x0126	; 0x800126 <__data_end>
  6f4:	e0 e0       	ldi	r30, 0x00	; 0
  6f6:	f1 e0       	ldi	r31, 0x01	; 1
  6f8:	01 90       	ld	r0, Z+
@@ -1162,7 +1162,7 @@ ISR(TIMER1_COMPA_vect)
  71a:	10 f4       	brcc	.+4      	; 0x720 <__vector_11+0x50>
 	{
 		shiftNum = 0;
- 71c:	10 92 20 01 	sts	0x0120, r1	; 0x800120 <__data_end>
+ 71c:	10 92 26 01 	sts	0x0126, r1	; 0x800126 <__data_end>
 	}
 }
  720:	ff 91       	pop	r31

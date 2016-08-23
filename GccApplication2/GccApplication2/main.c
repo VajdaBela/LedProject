@@ -133,7 +133,7 @@ volatile uint8_t const numbers[][7] PROGMEM = {
 volatile uint16_t bufer[PLATE_NUM][7];
 
 //what will be written out
-char text[] = "Stefan Kozomora burzulj";
+char text[] = "Stefan Kozomora nije burzulj";
 
 //puts either 1 or 0 into the register 
 void Shift(uint8_t state)
